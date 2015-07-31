@@ -1,0 +1,16 @@
+# ~/.mysql-prompt
+#
+# Create this symbolic link :
+#   ln -s "$PWD/.mysql-prompt" ~/.mysql-prompt
+# Add this alias in ~/.bash_aliases :
+#    alias mysql=$(echo -e "mysql $(cat ~/.mysql-prompt | grep -v '^#\|^$')" \
+#    --silent --table --auto-rehash --show-warnings --no-beep \
+#    --column-type-info --debug-info \
+#    --port=3306 --protocol=tcp \
+#    --user=root --host="localhost" --database="information_schema" --password)
+# executing \mysql don't use this alias.
+# Note:
+# CYAN=\033[1;36m[
+# NC=\033[
+
+--prompt="\033[1;36m[\\c mysql://\\u@\\h:\\p/\\d]\\n\033[0m> "
