@@ -8,7 +8,7 @@
 #    --column-type-info --debug-info \
 #    --port=3306 --protocol=tcp \
 #    --user=root --host="localhost" --database="information_schema" --password)
-# executing \mysql don't use this alias.
+# If you execute \mysql, you don't use this alias.
 # Note:
 # CYAN=\033[1;36m[
 # NC=\033[
