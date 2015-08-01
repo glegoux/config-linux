@@ -4,7 +4,7 @@
 //   ln -s "$PWD/.mongo-prompt.js" ~/.mongo-prompt.js
 // Add this alias in ~/.bash_aliases :
 //   alias mongo='mongo ~/.mongo-prompt.js --shell'
-// executed \mongo don't use this alias.
+// If you execute \mongo, you don't use this alias.
 
 var requestNb = 0;
 
