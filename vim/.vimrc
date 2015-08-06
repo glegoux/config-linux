@@ -15,13 +15,13 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 
-" keep the indent on the new lines
+" keep indent on the new lines
 set autoindent
 
 " do smart indent
 set smartindent
 
-" show line too long on one unique line
+" show too long line on one unique line
 set wrap!
 
 " use color scheme monokai
