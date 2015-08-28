@@ -1,0 +1,60 @@
+### GNU Screen Configuration File
+#
+# This file controls the behavior of `screen`. Install to ~/.screenrc, and run
+# `mkdir -p ~/.screen/{caps,logs}`.
+#
+###
+
+### General Configuration Options
+
+# Suppress trailing blank lines when scrolling up in the history buffer.
+compacthist on
+
+# Enable logging.
+deflog on
+
+# Enable activity monitoring for windows.
+defmonitor on
+
+# Deal with dead terminals.
+defnonblock on
+
+# Save lots of scrollback.
+defscrollback 50000
+
+# Save all screen captures to ~/.screen/caps.
+hardcopydir "~/.screen/caps"
+
+# Ignore case when searching.
+ignorecase on
+
+# Log to ~/.screen/logs.
+logfile "~/.screen/logs/screenlog.%n"
+
+# Enable timestamps in the log file.
+logtstamp on
+
+# Set the colors for screen messages to default on blue background.
+sorendition = bd
+
+# Disable the startup splash message.
+startup_message off
+
+
+### Status Line Configuration Options
+
+# Always display the caption line. Displays the:
+# %H - hostname
+# %l - current load
+# %Y-%m-%d - year-month-day
+# %C:%s %A - 12 hour time + AM/PM
+# %u - other users on this window (if any)
+caption always "%=%{= c}[%{=b d}%H%{= c}] [%{=b d}%l%{= c}] [%{=b d}%Y-%m-%d%C:%s %A%{= c}]%="
+
+
+# Force the status line to be the last line. Displays the:
+# %-w - all window numbers and names up to the current window
+# %n - current window number
+# %t - current window title
+# %+w - all window numbers and names following the current window
+hardstatus alwayslastline "%{= dd}%=%-w%{=b d}[%n %t]%{= dd}%+w%="
