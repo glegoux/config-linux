@@ -1,11 +1,10 @@
-### GNU Screen Configuration File
+# GNU Screen Configuration File
+# ~/.screenrc
 #
-# This file controls the behavior of `screen`. Install to ~/.screenrc, and run
-# `mkdir -p ~/.screen/{caps,logs}`.
-#
-###
+# This file controls the behavior of `screen`. 
+# Install to ~/.screenrc, and run `mkdir -p ~/.screen/{caps,logs}`.
 
-### General Configuration Options
+## General Configuration Options
 
 # Suppress trailing blank lines when scrolling up in the history buffer.
 compacthist on
@@ -41,7 +40,7 @@ sorendition = bd
 startup_message off
 
 
-### Status Line Configuration Options
+## Status Line Configuration Options
 
 # Always display the caption line. Displays the:
 # %H - hostname
