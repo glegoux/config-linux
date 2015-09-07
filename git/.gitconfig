@@ -1,0 +1,36 @@
+# ~/.gitconfig
+
+[user]
+	name = glegoux
+[color]
+	ui = auto
+[core]
+	editor = vim
+	whitespace = -trailing-space
+[merge]
+	ff = false
+	tool = kdiff3
+[alias]
+	st = status -u
+	ci = commit
+	br = branch
+	co = checkout
+	rf = reflog
+	lg = log --graph --pretty=oneline --abbrev-commit --decorate
+	lr = log -g --pretty=oneline --abbrev-commit
+	df = diff --color-words=.
+	unadd = reset HEAD --
+	last = log -1 HEAD
+	home = rev-parse --show-toplevel
+	show-commit = !sh 'git diff '$1'^ '$1
+	show-stat-commit = !sh -c 'git diff-tree --no-commit-id --name-only -r '$1
+	show-file = !sh -c 'git show '$1:$2
+[commit]
+	template = ~/.gitmessage.txt
+[diff]
+	mnemonicPrefix = true
+	renames = true
+[pull]
+	rebase = preserve
+[push]
+	default = simple
