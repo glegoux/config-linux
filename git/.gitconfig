@@ -22,7 +22,7 @@
 	unadd = reset HEAD --
 	last = log -1 HEAD
 	graph = log --graph --pretty=oneline --abbrev-commit --decorate
-	home = !sh -c 'cd "`git rev-parse --show-toplevel`"'
+	home = !DIR=$(git rev-parse --show-toplevel) && !sh -c 'cd $DIR' 
 	show-commit = !sh 'git diff '$1'^ '$1
 	show-stat-commit = !sh -c 'git diff-tree --no-commit-id --name-only -r '$1
 	show-file = !sh -c 'git show '$1:$2
