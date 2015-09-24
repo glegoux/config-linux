@@ -10,4 +10,6 @@ Install these three user interface of settings manager :
 sudo apt-get install dconf-editor gconf-editor compizconfig-settings-manager
 ~~~
 
-Use also `gsettings` in the terminal shell. 
+Use also `gsettings` in the terminal shell.  
+
+Run ` compizconfig-settings-manager` with the command `ccsm` .
