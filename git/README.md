@@ -2,12 +2,14 @@
 
 Website https://git-scm.com/ .
 
-Git Repo :
+## Git Repo
+
 * HTML : https://git.kernel.org/cgit/git/git-htmldocs.git/
 * Man Pages : https://git.kernel.org/cgit/git/git-manpages.git/
 * Source code : https://git.kernel.org/cgit/git/git.git/
 
-PPA :  
+## PPA
+
 The Ubuntu git maintainers team has a PPA ppa:git-core/ppa
 See https://launchpad.net/~git-core/+archive/ubuntu/ppa.
 
@@ -16,6 +18,8 @@ sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install git
 ~~~
+
+## GUI
 
 Install these GUI clients to view git repositories :
 
