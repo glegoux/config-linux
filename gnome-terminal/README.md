@@ -2,6 +2,7 @@
 
 version 3.6.2 (see in the menu `Help > About` ).  
 
+See official website, https://help.gnome.org/users/gnome-terminal/stable/ .
 
 Import this configuration to Gnome terminal with :  
 
