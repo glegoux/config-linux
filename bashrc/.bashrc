@@ -7,8 +7,7 @@
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
-setxkbmap fr
-#setxkbmap us
+setxkbmap us
 
 # don't overwrite with >
 #set -C
