@@ -1,6 +1,11 @@
 # Git
 
-Go to https://git-scm.com/ .
+Website https://git-scm.com/ .
+
+Git Repo :
+* HTML : https://git.kernel.org/cgit/git/git-htmldocs.git/
+* Man Pages : https://git.kernel.org/cgit/git/git-manpages.git/
+* Source code : https://git.kernel.org/cgit/git/git.git/
 
 Install these GUI clients to view git repositories :
 
