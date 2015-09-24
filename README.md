@@ -4,7 +4,7 @@ Configuration system Linux for development under Ubuntu 14.04 LTS desktop.
 
 See the file configuration of each technology.  
 
-Install these three user interface of settings manager :
+Install these three GUI settings manager :
 
 ~~~bash
 sudo apt-get install dconf-editor gconf-editor compizconfig-settings-manager
