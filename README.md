@@ -2,9 +2,9 @@
 
 Configuration system Linux for development under Ubuntu 14.04 LTS desktop.  
 
-Website : http://www.ubuntu.com/
-Wiki : https://wiki.ubuntu.com/LTS
-Help : https://help.ubuntu.com/
+Website : http://www.ubuntu.com/  
+Wiki : https://wiki.ubuntu.com/LTS  
+Help : https://help.ubuntu.com/  
 
 See the file configuration of each technology.  
 
