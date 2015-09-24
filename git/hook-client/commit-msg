@@ -1,0 +1,19 @@
+#!/bin/sh
+
+##
+# Description :
+#   This script is executed before a command "git commit".
+# Paremeter :
+#   $1: a file that is a buffer for the current commit message
+#       here normally .git/COMMIT_EDITMSG into the root of the Git project.
+#
+CURRENT_BRANCH_NAME="$(basename "$(git symbolic-ref HEAD)")"
+MESSAGE="$(cat "$1" | sed '/^#.*/d')"
+
+if [ -n "$MESSAGE" ]; then
+    echo "[$CURRENT_BRANCH_NAME] $MESSAGE" > "$1"
+    exit 0
+else
+    echo "Aborting commit due to empty commit message."
+    exit 1
+fi

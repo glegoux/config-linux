@@ -1,0 +1,35 @@
+# ~/.bashrc_git
+
+__is_into_depot_git() {
+    git status &> /dev/null
+    if test $? -gt 0; then
+        echo "ERROR: $PWD isn't a git depot!"
+        return 1
+    fi
+}
+
+__is_git_installed() {
+    which git &> /dev/null
+    if test $? -gt 0; then
+        echo "ERROR: Git isn't installed!"
+        return 1
+    fi
+}
+
+__git_home() {
+    __is_git_installed || return 1
+    __is_into_depot_git || return 1
+    cd $(git rev-parse --show-toplevel)
+}
+      
+# Alias
+alias git-home="__git_home"
+
+# Prompt with configuration of the variable __git_ps1 to $PS1
+# see http://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Bash
+export GIT_PS1_SHOWDIRTYSTATE=1
+export GIT_PS1_SHOWSTASHSTATE=1
+export GIT_PS1_SHOWUNTRACKEDFILES=1
+export GIT_PS1_SHOWUPSTREAM=verbose
+export GIT_PS1_DESCRIBE_STYLE=branch
+
