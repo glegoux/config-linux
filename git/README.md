@@ -11,7 +11,7 @@ Website https://git-scm.com/ .
 ## PPA
 
 The Ubuntu git maintainers team has a PPA, ppa:git-core/ppa.  
-See https://launchpad.net/~git-core/+archive/ubuntu/ppa.
+See https://launchpad.net/~git-core/+archive/ubuntu/ppa .
 
 ~~~bash
 sudo add-apt-repository ppa:git-core/ppa
