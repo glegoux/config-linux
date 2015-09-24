@@ -1,0 +1,27 @@
+[preferences/editor]
+display-right-margin=true
+highlight-current-line=true
+bracket-matching=true
+scheme='classic'
+create-backup-copy=false
+tabs-size=uint32 2
+display-line-numbers=true
+insert-spaces=true
+auto-save-interval=uint32 10
+
+[preferences/ui]
+statusbar-visible=true
+notebook-show-tabs-mode='always'
+
+[plugins/filebrowser]
+tree-view=true
+
+[plugins]
+active-plugins=['spell', 'time', 'zeitgeistplugin', 'filebrowser', 'docinfo', 'modelines']
+
+[state/window]
+size=(935, 1028)
+state=128
+bottom-panel-size=140
+side-panel-size=200
+side-panel-active-page=228660812
