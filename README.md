@@ -1,6 +1,6 @@
 # config-linux
 
-Configuration system Linux for development under Ubuntu 14.04 LTS.  
+Configuration system Linux for development under Ubuntu 14.04 LTS desktop.  
 
 See the file configuration of each technology.  
 
