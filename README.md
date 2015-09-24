@@ -2,7 +2,7 @@
 
 Configuration system Linux for development under Ubuntu 14.04 LTS desktop.  
 
-Website : http://www.ubuntu.com/  
+Website : http://www.ubuntu.com/desktop  
 Wiki : https://wiki.ubuntu.com/LTS  
 Help : https://help.ubuntu.com/  
 
