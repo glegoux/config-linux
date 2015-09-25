@@ -10,6 +10,8 @@ Import this configuration to Gnome terminal with :
 gconftool-2 --load profile.xml
 ~~~
 
+You can delete `profile.xml` after importing.
+
 Open a new Terminal, or switch to the new profile in the menu `Terminal > Change Profile`.
 
 Export your current configuration :
