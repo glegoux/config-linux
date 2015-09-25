@@ -30,6 +30,10 @@ if [ -f /etc/bash_completion.d/git-prompt ]; then
     . /etc/bash_completion.d/git-prompt
 fi
 
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    . /usr/share/bash-completion/completions/git
+fi
+
 # Prompt with configuration of the variable __git_ps1 to $PS1
 # see http://git-scm.com/book/en/v2/Git-in-Other-Environments-Git-in-Bash
 export GIT_PS1_SHOWDIRTYSTATE=1
