@@ -3,6 +3,7 @@
 [user]
 	name = glegoux
 	email = gilles.legoux@gmail.com
+	logallrefupdates=true
 [color]
 	ui = auto
 [core]
