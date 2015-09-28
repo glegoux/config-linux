@@ -19,6 +19,7 @@
 	rf = reflog
 	lg = log -g --pretty=oneline --abbrev-commit
 	df = diff --color-words=.
+	slg = shortlog -sn
 	unadd = reset HEAD --
 	last = log -1 HEAD
 	graph = log --graph --pretty=oneline --abbrev-commit --decorate
