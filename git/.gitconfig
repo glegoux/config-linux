@@ -27,10 +27,10 @@
 	home = !DIR=$(git rev-parse --show-toplevel) && sh -c 'cd $DIR'
 	search = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'
 	show-commit = !sh 'git diff '$1'^ '$1
-	show-stat-commit = !sh -c 'git diff-tree --no-commit-id --name-only -r '$1
+	show-stat-commit = diff-tree --no-commit-id --name-only -r
 	show-file = !sh -c 'git show '$1:$2
-	short-id = !sh 'git rev-parse --short '$1
-	long-id = !sh 'git rev-parse '$1
+	short-id = rev-parse --short
+	long-id = rev-parse
 [commit]
 	template = ~/.gitmessage.txt
 [diff]
