@@ -28,6 +28,8 @@
 	show-commit = !sh 'git diff '$1'^ '$1
 	show-stat-commit = !sh -c 'git diff-tree --no-commit-id --name-only -r '$1
 	show-file = !sh -c 'git show '$1:$2
+	short-id = !sh 'git rev-parse --short '$1
+	long-id = !sh 'git rev-parse '$1
 [commit]
 	template = ~/.gitmessage.txt
 [diff]
