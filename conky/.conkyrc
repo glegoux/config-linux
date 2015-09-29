@@ -1,0 +1,152 @@
+# ~/.conkyrc 
+
+# GLOBAL CONFIGURATION
+
+# transparent background
+background yes
+own_window_transparent no
+own_window_argb_visual yes
+own_window_argb_value 200
+
+# geometry
+gap_x 0
+gap_y 0
+minimum_size 450 1080
+maximum_width 450
+
+use_xft yes
+xftfont 123:size=8
+xftalpha 0.1
+update_interval 0.5
+total_run_times 0
+own_window yes
+own_window_type normal
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders yes
+draw_graph_borders yes
+default_color black
+default_shade_color red
+default_outline_color green
+alignment top_right
+no_buffers no
+uppercase no
+cpu_avg_samples 8
+net_avg_samples 1
+override_utf8_locale yes
+use_spacer yes
+text_buffer_size 256
+
+# templates
+template0 ${execi 1 nmcli --terse --fields DEVICE,TYPE,STATE dev}
+
+TEXT
+
+# TITLE
+${font Arial:size=16}${color Tan1}GNU ${color Ivory}/ LINUX ${color Gray}${nodename}${font}
+Uptime : ${uptime}
+
+# TIME
+${voffset -40}
+${color Ivory}
+${font Arial:size=10}
+${execi 1 date '+%A, %d %B %Y'} \
+(Q${execi 1 echo $(( ($(date +%-m)-1)/3+1 )) }, \#${execi 1 date '+%V'}) \
+$alignr ${execi 86400 cat /etc/timezone} ${execi 1 date '+(%z UTC)'}
+
+# SYSTEM
+${font Arial:bold:size=10}${color Tan1}SYSTEM ${color Ivory} ${hr 1}${font Arial:size=10}${color Gray}
+
+Kernel ....................... $sysname $kernel $machine
+Operating system ...... ${execi 86400 lsb_release -si} ${execi 86400 lsb_release -sr} ${execi 86400 lsb_release -sc}
+File System ............... ${fs_type}
+Processes : running ${running_processes} / ${processes}
+
+# PROCESSORS
+${font Arial:bold:size=10}${color Tan1}PROCESSORS ${color Gray}${hr 1}$font
+
+Intel Pentium i7 : ${freq_g cpu}Ghz
+Load : ${loadavg}
+
+CPU1 ${cpubar cpu1 5,150} ${cpu cpu1}%   $alignr CPU2 ${cpubar cpu2 5,150} ${cpu cpu2}% 
+CPU3 ${cpubar cpu3 5,150} ${cpu cpu3}%   $alignr CPU4 ${cpubar cpu4 5,150} ${cpu cpu4}% 
+CPU5 ${cpubar cpu5 5,150} ${cpu cpu5}%   $alignr CPU6 ${cpubar cpu6 5,150} ${cpu cpu6}% 
+CPU7 ${cpubar cpu7 5,150} ${cpu cpu7}%   $alignr CPU8 ${cpubar cpu8 5,150} ${cpu cpu8}% 
+CPU Total Usage $alignr 
+${cpubar 5,425} ${cpu}%
+
+CPU History
+${cpugraph 50}
+
+# MEMORY
+${font Arial:bold:size=10}${color Tan1}MEMORY ${color Ivory}${hr 1}$font${color Gray}
+
+SWAP Usage $swap / $swapmax $swapperc% $swapbar
+RAM Usage $alignc $mem / $memmax $alignr $memperc%
+$membar
+
+RAM History
+${memgraph 50}
+
+# HDD
+${font Arial:bold:size=10}${color Tan1}HDD ${color Ivory}${hr 1}$font${color Gray}
+
+/home $alignc ${fs_used /home} / ${fs_size /home} $alignr free ${fs_free_perc /home}%
+${fs_bar /home}
+
+Disk I/O $alignr ${diskio}
+${diskiograph 50}
+
+# NETWORK
+${font Arial:bold:size=10}${color Tan2}NETWORK ${color Ivory}${hr 1}$font${color Gray}
+
+Interface          $alignr ${execi 3600 iwgetid | cut -f1 -d ' '} 
+Public IP          $alignr ${execi 3600 curl ipinfo.io/ip}
+Public Hostname    $alignr ${execi 3600 dig +short -x $(curl ipinfo.io/ip) | sed s/.$//}
+Newtork Name       $alignr ${execi 3600 iwgetid -s}
+Private IP         $alignr ${execi 3600 ifconfig $(iwgetid | cut -f1 -d ' ') | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1}
+
+Down:${downspeed wlan0} k/s ${color lightgrey} Up:$ ${upspeed wlan0} k/s
+${color black}${downspeedgraph wlan0 32,150 ff0000 0000ff} $alignr${color black}${upspeedgraph wlan0 32,150 0000ff ff0000}
+
+Down $alignr ${downspeed eth0} kb/s
+Up $alignr ${upspeed eth0} kb/s
+
+Downloaded: $alignr  ${totaldown eth0}
+Uploaded: $alignr  ${totalup eth0}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
