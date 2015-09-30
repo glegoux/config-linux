@@ -87,6 +87,7 @@ CPU History
 ${cpugraph 50}
 #
 TOP PROCESSOR USAGE ${hr 1}
+
 NAME PID CPU% MEM%
 1. ${top name 1}${top pid 1} ${top cpu 1} ${top mem 1}
 2. ${top name 2}${top pid 2} ${top cpu 2} ${top mem 2}
@@ -107,6 +108,7 @@ RAM History
 ${memgraph 50}
 #
 TOP MEMORY USAGE ${hr 1}
+
 NAME PID CPU% MEM%
 1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
 2. ${top_mem name 2}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
