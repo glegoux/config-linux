@@ -2,27 +2,24 @@
 
 # GLOBAL CONFIGURATION
 
+# window
+own_window yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+# geometry
+gap_x 0
+gap_y 30
+minimum_size 450 1080
+maximum_width 450
+
 # transparent background
 background yes
 own_window_transparent no
 own_window_argb_visual yes
 own_window_argb_value 200
 
-# geometry
-gap_x 0
-gap_y 0
-minimum_size 450 1080
-maximum_width 450
-
-use_xft yes
-xftfont 123:size=8
-xftalpha 0.1
-update_interval 0.5
-total_run_times 0
-own_window yes
-own_window_type normal
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-double_buffer yes
+# decoration
 draw_shades no
 draw_outline no
 draw_borders yes
@@ -32,14 +29,23 @@ default_shade_color red
 default_outline_color green
 
 # text
+use_xft yes
+use_spacer yes
+override_utf8_locale yes
+xftfont 123:size=8
+xftalpha 0.1
 alignment top_right
 no_buffers no
 uppercase no
+text_buffer_size 256
+
+# reporting
+update_interval 0.5
+total_run_times 0
+double_buffer yes
 cpu_avg_samples 8
 net_avg_samples 1
-override_utf8_locale yes
-use_spacer yes
-text_buffer_size 256
+
 
 # templates
 template0 ${execi 1 nmcli --terse --fields DEVICE,TYPE,STATE dev}
@@ -48,79 +54,90 @@ TEXT
 #
 # TITLE
 ${font Arial:size=16}${color Tan1}GNU ${color Ivory}/ LINUX \
-${color Gray}${nodename}${font}
+${color Gray}${nodename}${font} \
 Uptime : ${uptime}
-
+#
 # TIME
-${voffset -40}
-${color Ivory} ${font Arial:size=10}
+${color Ivory} ${font Arial:size=10}\
 ${execi 1 date '+%A, %d %B %Y'} \
 (Q${execi 1 echo $(( ($(date +%-m)-1)/3+1 )) }, \#${execi 1 date '+%V'}) \
 $alignr ${execi 86400 cat /etc/timezone} ${execi 1 date '+(%z UTC)'}
-#
+
 # SYSTEM
-${font Arial:bold:size=10}${color Tan1}SYSTEM ${color Ivory} ${hr 1}${font Arial:size=10}${color Gray}
-#
-Kernel ....................... $sysname $kernel $machine
-Operating system ...... ${execi 86400 lsb_release -si} ${execi 86400 lsb_release -sr} ${execi 86400 lsb_release -sc}
-File System ............... ${fs_type}
-Processes : running ${running_processes} / ${processes}
-#
-# PROCESSORS
-${font Arial:bold:size=10}${color Tan1}PROCESSORS ${color Ivory}${hr 1} \
+${font Arial:bold:size=10}${color Tan1}SYSTEM ${color Ivory} ${hr 2} \
 $font${color Gray}
+
+Kernel           $alignr $sysname $kernel $machine
+Operating system $alignr ${execi 86400 lsb_release -si} ${execi 86400 lsb_release -sr} ${execi 86400 lsb_release -sc}
+File System      $alignr${fs_type}
+
+# PROCESSORS
+${font Arial:bold:size=10}${color Tan1}PROCESSORS ${color Ivory}${hr 2} \
+$font${color Gray}
+
+Frequency : ${freq_g cpu}Ghz ${offset 40} Running : ${running_processes}/ ${processes} $alignr Load : ${loadavg}
 #
-Intel Pentium i7 : ${freq_g cpu}Ghz $alignr Load : ${loadavg}
-#
-CPU1 ${cpubar cpu1 5,150} ${cpu cpu1}%   $alignr CPU2 ${cpubar cpu2 5,150} ${cpu cpu2}% 
-CPU3 ${cpubar cpu3 5,150} ${cpu cpu3}%   $alignr CPU4 ${cpubar cpu4 5,150} ${cpu cpu4}% 
-CPU5 ${cpubar cpu5 5,150} ${cpu cpu5}%   $alignr CPU6 ${cpubar cpu6 5,150} ${cpu cpu6}% 
-CPU7 ${cpubar cpu7 5,150} ${cpu cpu7}%   $alignr CPU8 ${cpubar cpu8 5,150} ${cpu cpu8}% 
-CPU Total Usage $alignr 
+CPU1 ${cpubar cpu1 5,150} ${cpu cpu1}% ${alignr 5} CPU2 ${cpubar cpu2 5,150} ${cpu cpu2}% 
+CPU3 ${cpubar cpu3 5,150} ${cpu cpu3}% ${alignr 5} CPU4 ${cpubar cpu4 5,150} ${cpu cpu4}% 
+CPU5 ${cpubar cpu5 5,150} ${cpu cpu5}% ${alignr 5} CPU6 ${cpubar cpu6 5,150} ${cpu cpu6}% 
+CPU7 ${cpubar cpu7 5,150} ${cpu cpu7}% ${alignr 5} CPU8 ${cpubar cpu8 5,150} ${cpu cpu8}% 
+CPU Total Usage
 ${cpubar 5,425} ${cpu}%
 #
 CPU History
 ${cpugraph 50}
 #
+TOP PROCESSOR USAGE ${hr 1}
+NAME PID CPU% MEM%
+1. ${top name 1}${top pid 1} ${top cpu 1} ${top mem 1}
+2. ${top name 2}${top pid 2} ${top cpu 2} ${top mem 2}
+3. ${top name 3}${top pid 3} ${top cpu 3} ${top mem 3}
+4. ${top name 4}${top pid 4} ${top cpu 4} ${top mem 4}
+5. ${top name 5}${top pid 5} ${top cpu 5} ${top mem 5}
+
 # MEMORY
-${font Arial:bold:size=10}${color Tan1}MEMORY ${color Ivory}${hr 1} \
+${font Arial:bold:size=10}${color Tan1}MEMORY ${color Ivory}${hr 2} \
 $font${color Gray}
-#
-SWAP Usage $swap / $swapmax $swapperc% $swapbar
+
+SWAP Usage  $alignc  $swap / $swapmax $alignr $swapperc%
+$swapbar
 RAM Usage $alignc $mem / $memmax $alignr $memperc%
 $membar
 #
 RAM History
 ${memgraph 50}
 #
+TOP MEMORY USAGE ${hr 1}
+NAME PID CPU% MEM%
+1. ${top_mem name 1}${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}
+2. ${top_mem name 2}${top_mem pid 2} ${top_mem cpu 2} ${top_mem mem 2}
+3. ${top_mem name 3}${top_mem pid 3} ${top_mem cpu 3} ${top_mem mem 3}
+4. ${top_mem name 4}${top_mem pid 4} ${top_mem cpu 4} ${top_mem mem 4}
+5. ${top_mem name 5}${top_mem pid 5} ${top_mem cpu 5} ${top_mem mem 5}
+
 # HDD
-${font Arial:bold:size=10}${color Tan1}HDD ${color Ivory}${hr 1} \
+${font Arial:bold:size=10}${color Tan1}HDD ${color Ivory}${hr 2} \
 $font${color Gray}
-#
+
 /home $alignc ${fs_used /home} / ${fs_size /home} $alignr free ${fs_free_perc /home}%
 ${fs_bar /home}
 #
 Disk I/O $alignr ${diskio}
 ${diskiograph 50}
-#
+
 # NETWORK
-${font Arial:bold:size=10}${color Tan2}NETWORK ${color Ivory}${hr 1} \
+${font Arial:bold:size=10}${color Tan2}NETWORK ${color Ivory}${hr 2} \
 $font${color Gray}
-#
+
 Interface          $alignr ${execi 3600 iwgetid | cut -f1 -d ' '} 
 Public IP          $alignr ${execi 3600 curl ipinfo.io/ip}
 Public Hostname    $alignr ${execi 3600 dig +short -x $(curl ipinfo.io/ip) | sed s/.$//}
 Newtork Name       $alignr ${execi 3600 iwgetid -s}
 Private IP         $alignr ${execi 3600 ifconfig $(iwgetid | cut -f1 -d ' ') | grep "inet addr" | cut -d ':' -f 2 | cut -d ' ' -f 1}
 
-Down:${downspeed wlan0} k/s ${color lightgrey} Up:$ ${upspeed wlan0} k/s
-${color black}${downspeedgraph wlan0 32,150 ff0000 0000ff} $alignr${color black}${upspeedgraph wlan0 32,150 0000ff ff0000}
-
-Down $alignr ${downspeed eth0} kb/s
-Up $alignr ${upspeed eth0} kb/s
-
-Downloaded: $alignr  ${totaldown eth0}
-Uploaded: $alignr  ${totalup eth0}
+${offset 30}Down: ${downspeed wlan0} kb/s ${offset 170} Up: ${upspeed wlan0} kb/s
+${downspeedgraph wlan0 32,200} $alignr ${offset -1s0} ${upspeedgraph wlan0 32,200}
+Total downloaded: ${totaldown wlan0} $alignr ${offset -60} Total uploaded: ${totalup wlan0}
 
 
 
