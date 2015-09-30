@@ -4,7 +4,7 @@
 
 # window
 own_window yes
-own_window_type desktop
+own_window_type panel
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 
 # geometry
