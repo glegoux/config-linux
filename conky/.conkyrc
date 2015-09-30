@@ -46,7 +46,6 @@ double_buffer yes
 cpu_avg_samples 8
 net_avg_samples 1
 
-
 # templates
 template0 ${execi 1 nmcli --terse --fields DEVICE,TYPE,STATE dev}
 
@@ -138,36 +137,3 @@ Private IP         $alignr ${execi 3600 ifconfig $(iwgetid | cut -f1 -d ' ') | g
 ${offset 30}Down: ${downspeed wlan0} kb/s ${offset 170} Up: ${upspeed wlan0} kb/s
 ${downspeedgraph wlan0 32,200} $alignr ${offset -1s0} ${upspeedgraph wlan0 32,200}
 Total downloaded: ${totaldown wlan0} $alignr ${offset -60} Total uploaded: ${totalup wlan0}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
