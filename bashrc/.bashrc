@@ -86,6 +86,7 @@ shopt -s checkwinsize
 export LINES COLUMNS
 
 pre_prompt() {
+    # get exit status all right
     local -i exit_status="$?"
     # line 1 without color
     local color=${YELLOW}
