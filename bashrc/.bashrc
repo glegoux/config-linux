@@ -7,6 +7,7 @@
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
 # choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
+#setxkbmap fr
 setxkbmap us
 
 # don't overwrite with >
@@ -66,6 +67,8 @@ green='\[\033[0;32m\]'
 GREEN='\[\033[1;32m\]'
 yellow='\[\033[0;33m\]'
 YELLOW='\[\033[1;33m\]'
+orange='\[\033[0;38;5;215m\]'
+ORANGE='\[\033[1;38;5;215m\]'
 blue='\[\033[0;34m\]'
 coldblue='\[\033[0;38;5;33m\]'
 BLUE='\[\033[1;34m\]'
@@ -83,9 +86,12 @@ shopt -s checkwinsize
 export LINES COLUMNS
 
 pre_prompt() {
-    local exit_status="$?"
+    local -i exit_status="$?"
+    # line 1 without color
+    local color=${YELLOW}
     local u="$(whoami)"
     local h="$(hostname)"
+    # for git prompt
     local g="$(__git_ps1)"
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
@@ -93,36 +99,41 @@ pre_prompt() {
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
     local l1="[${u}: ${wd}${g}]"
-    if [ ${exit_status} -ne 0 ]; then
+    if [[ ${exit_status} -ne 0 ]]; then
         l1="[${exit_status}|${u}: ${wd}${g}]"
     fi
+    # responsive prompt if line 1 too long
     local l1_size=${#l1}
-
-    local t="$(date "+%H:%M:%S")"
-    local l2="[$t]-\\$ "
-
     local d=""
-    if [ $COLUMNS -gt $l1_size ]; then
-        local delta="$(($COLUMNS-$l1_size))"
-        local d=$(for i in `seq 1 $delta`; do echo -n =; done)
+    local delta=""
+    if [[ ${COLUMNS} -gt ${l1_size} ]]; then
+        delta="$((${COLUMNS}-${l1_size}))"
+        if [[ ${TERM} != "ansi" ]]; then
+            # if terminal is not for eclipse
+            d=$(for i in `seq 1 ${delta}`; do echo -n =; done)
+        fi
     else
-        local delta="$(($l1_size-$COLUMNS+3))"
-        if [ $delta -lt ${#wd} ]; then
-            wd="${wd:$delta}"
-            wd="...$wd"
+        delta="$((${l1_size}-${COLUMNS}+3))"
+        if [[ ${delta} -lt ${#wd} ]]; then
+            wd="${wd:${delta}}"
+            wd="...${wd}"
         else
-            export PS1="${YELLOW}$u \\$ ${NC}"
+            # impossible to resize prompt
+            export PS1="${color}$u \\$ ${NC}"
             return
         fi
     fi
-
-    local l1="[${u}: ${wd}${g}]${d}"
-    if [ ${exit_status} -ne 0 ]; then
-        l1="[${RED}${exit_status}${YELLOW}|${u}: ${wd}${g}]${d}"
+    # line 1 with color
+    if [[ ${exit_status} -eq 0 ]]; then
+        l1="${color}[${u}: ${wd}${g}]${d}"
+    else
+        l1="${color}[${RED}${exit_status}${color}|${u}: ${wd}${g}]${d}"
     fi
-
+    # line 2 with color
+    local t="$(date "+%H:%M:%S")"
+    local l2="${color}[$t]-\\$ ${NC}"
     # update prompt
-    export PS1="${YELLOW}${l1}\n${YELLOW}${l2}${NC}"
+    export PS1="${l1}\n${l2}"
 }
 
 PROMPT_COMMAND=pre_prompt
