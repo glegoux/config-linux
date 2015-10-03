@@ -31,6 +31,7 @@
 	show-file = !sh -c 'git show '$1:$2
 	short-id = rev-parse --short
 	long-id = rev-parse
+	ignore = ls-files --others --ignored --exclude-standard
 [commit]
 	template = ~/.gitmessage.txt
 [diff]
