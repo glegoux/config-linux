@@ -24,7 +24,6 @@
 	unadd = reset HEAD --
 	last = log -1 HEAD
 	graph = log --graph --pretty=oneline --abbrev-commit --decorate
-	home = !DIR=$(git rev-parse --show-toplevel) && sh -c 'cd $DIR'
 	search = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'
 	show-commit = !sh 'git diff '$1'^ '$1
 	show-stat-commit = diff-tree --no-commit-id --name-only -r
