@@ -29,11 +29,6 @@ if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
 fi
 
-# enable browsing history aliases
-if [ -f ~/.bash_aliases_bhist ]; then
-      . ~/.bash_aliases_bhist
-fi
-
 # enable git config
 if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
