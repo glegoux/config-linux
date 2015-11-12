@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/glegoux/projects/mdf/2014/ex5-le-centre-de-la-matrice'
-let g:netrw_dirhist_2='/home/glegoux/projects/mdf/2014/ex6-le-mot-le-plus-courant'
-let g:netrw_dirhist_3='/home/glegoux/projects/7circles/script-conf-server/backupFTP/test/build-test'
-let g:netrw_dirhist_4='/home/glegoux/projects/7circles/script-conf-server/backup/test/build-test'
-let g:netrw_dirhist_5='/home/glegoux/java-test/A.java'
-let g:netrw_dirhist_6='/home/glegoux/java-test/Main.java'
-let g:netrw_dirhist_7='/home/glegoux/projects/github/browsing-history-shell'
