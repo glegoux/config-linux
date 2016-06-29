@@ -10,7 +10,7 @@
 #   For example, your current branch is master and your commit
 #   message is "First commit", automatically your commit message
 #   becomes "[master] First commit".
-# Paremeter:
+# Parameter:
 #   $1: relative path name to a file that is used as commit message buffer,
 #       equals to ".git/COMMIT_EDITMSG" in relation to the git project root.
 # Exit Status:
