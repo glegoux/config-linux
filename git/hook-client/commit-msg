@@ -11,8 +11,8 @@
 #   message is "First commit", automatically your commit message
 #   becomes "[master] First commit".
 # Paremeter:
-#   $1: file path name that is a buffer for the current commit message,
-#       that is to say .git/COMMIT_EDITMSG at the root of the git project.
+#   $1: relative path name to a file that is used as commit message buffer,
+#       equals to ".git/COMMIT_EDITMSG" in relation to the git project root.
 # Exit Status:
 #   0: The commit message is completed with the current branch name.
 #   1: Do nothing, an error occurred with a message on STDERR, because
