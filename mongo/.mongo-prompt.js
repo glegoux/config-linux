@@ -1,7 +1,7 @@
-// ~/.mongo-prompt.js
+// mongo-prompt.js
 //
 // Create this symbolic link :
-//   ln -s "$PWD/.mongo-prompt.js" ~/.mongo-prompt.js
+//   ln -s "$PWD/mongo-prompt.js" ~/.mongo-prompt.js
 // Add this alias in ~/.bash_aliases :
 //   alias mongo='mongo ~/.mongo-prompt.js --shell'
 // If you execute \mongo, you don't use this alias.
@@ -19,9 +19,9 @@ var prompt = function() {
 
   var p = "[" + requestNb + " " + "mongo://" + user + "@" + host + port + "/" + db + "]";
 
-  var beginGreen = String("\033[1;32m");
-  var endGreen = String("\033[0m");
+  var green = String("\033[1;32m");
+  var end = String("\033[0m");
 
-  return print(beginGreen + p + endGreen);
+  return print(green + p + end);
 
 }
