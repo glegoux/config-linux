@@ -25,13 +25,13 @@
 	unadd = reset HEAD --
 	last = log -1 HEAD
 	graph = log --graph --pretty=oneline --abbrev-commit --decorate
-	search = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)'
+	search = log --pretty=format:'%C(yellow)%h%Cred%d%Creset - %C(cyan)%an %Creset: %s %Cgreen(%cr)' --grep
 	show-commit = !sh 'git diff '$1'^ '$1
 	show-stat-commit = diff-tree --no-commit-id --name-only -r
 	show-file = !sh -c 'git show '$1:$2
 	short-id = rev-parse --short
 	long-id = rev-parse
-	ignore = ls-files --others --ignored --exclude-standard
+	show-ignore = ls-files --others --ignored --exclude-standard
 	stash-rename = '!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git diff-index --quiet HEAD; s=$?; [ $s != 0 ] && git stash save "tmp stash from stash-rename"; git stash apply $rev && shift && git stash save "$@" && [ $s != 0 ] && git stash pop stash@{1}; }; _'
 [commit]
 	template = ~/.gitmessage.txt
