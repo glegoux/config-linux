@@ -8,7 +8,7 @@
 
 # choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
 #setxkbmap fr
-setxkbmap us
+#setxkbmap us
 
 # don't overwrite with >
 #set -C
@@ -29,6 +29,11 @@ if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
 fi
 
+# enable browsing history aliases
+if [ -f ~/.bash_aliases_bhist ]; then
+      . ~/.bash_aliases_bhist
+fi
+
 # enable git config
 if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
@@ -47,7 +52,7 @@ fi
 # basic commands
 alias ll='ls -alh'
 alias lx='ls -alhX'
-alias rm='rm -vi'
+alias rm='trash-put -vi'
 alias cp='cp -vi'
 alias mv='mv -vi'
 alias df='df -h'
@@ -80,6 +85,7 @@ NC='\[\033[0m\]'
 shopt -s checkwinsize
 export LINES COLUMNS
 
+
 pre_prompt() {
     # get exit status all right
     local -i exit_status="$?"
@@ -94,10 +100,19 @@ pre_prompt() {
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    local l1="[${u}: ${wd}${g}]"
-    if [[ ${exit_status} -ne 0 ]]; then
-        l1="[${exit_status}|${u}: ${wd}${g}]"
+    local l1="${u}: ${wd}${g}"
+    local pyenv=$(basename "${VIRTUAL_ENV}")
+    if [ -z "${pyenv}" ]; then
+      pyenv=$(basename "${CONDA_DEFAULT_ENV}")
+    fi 
+    if [ -n "${pyenv}" ]; then
+      pyenv="(${pyenv}) "
+      l1="${pyenv}${l1}"
     fi
+    if [[ ${exit_status} -ne 0 ]]; then
+        l1="${exit_status}|${l1}"
+    fi
+    l1="[${l1}]"
     # responsive prompt if line 1 too long
     local l1_size=${#l1}
     local d=""
@@ -120,16 +135,28 @@ pre_prompt() {
         fi
     fi
     # line 1 with color
+    pyenv="${GREEN}${pyenv}${NC}${YELLOW}"
     if [[ ${exit_status} -eq 0 ]]; then
-        l1="${color}[${u}: ${wd}${g}]${d}"
+        l1="${color}[${pyenv}${u}: ${wd}${g}]${d}"
     else
-        l1="${color}[${RED}${exit_status}${color}|${u}: ${wd}${g}]${d}"
+        l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${g}]${d}"
     fi
     # line 2 with color
     local t="$(date "+%H:%M:%S")"
     local l2="${color}[$t]-\\$ ${NC}"
-    # update prompt
     export PS1="${l1}\n${l2}"
+
 }
 
 PROMPT_COMMAND=pre_prompt
+
+# Personal script & Spark
+export PATH="$HOME/bin:$HOME/opt/spark/spark-2.0.1-bin-hadoop2.7/bin:$HOME/opt/spark/spark-2.0.1-bin-ha
+doop2.7/sbin:$PATH"
+
+# Anaconda
+export ANACONDA_HOME="${HOME}/opt/anaconda3"
+export ANACONDA_ENV="conda-stats"
+
+alias conda-start="source ${ANACONDA_HOME}/bin/activate ${ANACONDA_HOME}/envs/${ANACONDA_ENV}"
+alias conda-stop="source deactivate ${ANACONDA_ENV}"
