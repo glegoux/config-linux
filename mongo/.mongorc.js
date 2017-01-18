@@ -1,10 +1,4 @@
-// mongo-prompt.js
-//
-// Create this symbolic link :
-//   ln -s "$PWD/mongo-prompt.js" ~/.mongo-prompt.js
-// Add this alias in ~/.bash_aliases :
-//   alias mongo='mongo ~/.mongo-prompt.js --shell'
-// If you execute \mongo, you don't use this alias.
+// .mongorc.js
 
 var requestNb = 0;
 
