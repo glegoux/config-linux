@@ -13,6 +13,10 @@
 # don't overwrite with >
 #set -C
 
+# Ctrl-s to step forward 
+# Ctrl-r to step backward
+stty -ixon
+
 # command history
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
