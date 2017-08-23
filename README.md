@@ -6,9 +6,7 @@ Website : http://www.ubuntu.com/desktop
 Wiki : https://wiki.ubuntu.com/LTS  
 Help : https://help.ubuntu.com/  
 
-See the file configuration of each technology.  
-
-Install these three GUI settings manager :
+To see file configuration for each technology, install these three GUI settings managers:
 
 ~~~ bash
 sudo apt-get install dconf-editor gconf-editor compizconfig-settings-manager
