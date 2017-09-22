@@ -7,11 +7,11 @@ cd "$(git rev-parse --show-toplevel)"
 
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
 #message_commit="$(git log --format=%B -n 1)"
-message_commit=$(cat .git/)
+message_commit=$(cat .git/COMMIT_EDITMSG)
 change_id="$(echo "${message_commit}" | grep -E "^Change-Id:" | cut -f2 -d " ")"
 
-if [[ $(echo "${change_id}" | wc -l) -ne 1 ]]; then
-  >&2 echo -e "ERROR: Incorrect Change-Id: \n'${change_id}'"
+if [[ -z "${change_id}" ]] || [[ $(echo "${change_id}" | wc -l) -ne 1 ]]; then
+  >&2 echo "ERROR: Incorrect Change-Id: '${change_id}'"
   exit 1
 fi
 
