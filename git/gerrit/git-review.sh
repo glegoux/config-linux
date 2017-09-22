@@ -2,8 +2,12 @@
 
 set -e
 
+# go to repository home
+cd "$(git rev-parse --show-toplevel)"
+
 current_branch="$(git rev-parse --abbrev-ref HEAD)"
-message_commit="$(git log --format=%B -n 1)"
+#message_commit="$(git log --format=%B -n 1)"
+message_commit=$(cat .git/)
 change_id="$(echo "${message_commit}" | grep -E "^Change-Id:" | cut -f2 -d " ")"
 
 if [[ $(echo "${change_id}" | wc -l) -ne 1 ]]; then
