@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-set -e
-
 # constant
 
 GERRIT_URL="" # TO COMPLETE
@@ -10,7 +8,10 @@ GERRIT_URL="" # TO COMPLETE
 
 get_info_gerrit() {
   local change_id="$1"
-  curl -s "${GERRIT_URL}/changes/${change_id}/?o=CURRENT_REVISION" | sed 1d
+  local result=$(curl -s "${GERRIT_URL}/changes/${change_id}/?o=CURRENT_REVISION" | sed 1d)
+  if [[ $? -eq 0 ]]; then
+    echo "${result}"
+  fi
 }
 
 get_change_number() {
@@ -50,16 +51,37 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
   echo
 
   result="$(get_info_gerrit "${change_id}")"
-  change_number="$(get_change_number "${result}")"
-  commit_id="$(get_commit_id "${result}")"
-  n_patch_sets="$(get_n_patch_sets "${result}" "${commit_id}")"
+  is_new_review="false"
+  if [[ "${result}" == "" ]]; then
+    is_new_review="true"
+  fi
 
-  echo "See your current changes: ${GERRIT_URL}/${change_number}/"
-  echo "commit id    : ${commit_id}"
-  echo "change number: ${change_number}"
-  echo "change id    : ${change_id}"
-  echo "patch sets   : ${n_patch_sets}"
-  echo
+  if [[ "${is_new_review}" == "true" ]]; then
+
+    echo "*** Create a new review"
+    echo
+    echo "commit id    : ${commit_id}"
+    echo "change number: ${change_number}"
+    echo "change id    : ${change_id}"
+    echo "patch sets   : 1"
+    echo
+
+  else
+
+    change_number="$(get_change_number "${result}")"
+    commit_id="$(get_commit_id "${result}")"
+    n_patch_sets="$(get_n_patch_sets "${result}" "${commit_id}")"
+
+    echo "*** Update a review"
+    echo
+    echo "See your current review: ${GERRIT_URL}/${change_number}/"
+    echo "commit id    : ${commit_id}"
+    echo "change number: ${change_number}"
+    echo "change id    : ${change_id}"
+    echo "patch sets   : ${n_patch_sets}"
+    echo
+
+  fi
 
   read -p "Do you want push one review on ${current_branch} branch ? [Y/n]: " \
     answer
@@ -75,7 +97,11 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
   # If pushing to Gerrit fails consult the Gerrit documentation that
   # explains the error messages.
 
-  ref_type="changes"
+  if [[ "${is_new_review}" == "true" ]]; then
+    ref_type="publish"
+  else
+    ref_type="changes"
+  fi
 
   if [[ "${ref_type}" == "publish" ]]; then
     git push origin HEAD:refs/"${ref_type}"/"${1:-${current_branch}}"
@@ -85,5 +111,19 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
     >&2 echo "ERROR: Unknown reference type: '${ref_type}'"
     exit 1
   fi
+  if [[ $? -ne 0 ]]; then
+    exit 1
+  fi
+
+
+  result="$(get_info_gerrit "${change_id}")"
+  if [[ "${result}" == "" ]]; then
+    >&2 echo "ERROR: Impossible to retrieve pushed review!"
+    exit 1
+  fi
+  change_number="$(get_change_number "${result}")"
+  echo
+  echo "See your pushed review: ${GERRIT_URL}/${change_number}/"
 
 fi
+
