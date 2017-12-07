@@ -13,7 +13,7 @@ Website https://git-scm.com/ .
 The Ubuntu git maintainers team has a PPA, ppa:git-core/ppa.  
 See https://launchpad.net/~git-core/+archive/ubuntu/ppa .
 
-~~~bash
+~~~ bash
 sudo add-apt-repository ppa:git-core/ppa
 sudo apt-get update
 sudo apt-get install git
@@ -23,14 +23,20 @@ sudo apt-get install git
 
 Install these GUI clients to view git repositories :
 
-~~~bash
+~~~ bash
 sudo apt-get install gitg
 ~~~
 
 see https://wiki.gnome.org/action/show/Apps/Gitg .
 
-~~~bash
+~~~ bash
 sudo apt-get install gitk
 ~~~
 
 see `man gitk`.
+
+~~~ bash
+sudo apt-get install tig
+~~~
+
+see https://github.com/jonas/tig .
