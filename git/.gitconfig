@@ -33,7 +33,7 @@
 	long-id = rev-parse
 	show-ignore = ls-files --others --ignored --exclude-standard
 	stash-rename = '!_() { rev=$(git rev-parse $1) && git stash drop $1 || exit 1 ; git diff-index --quiet HEAD; s=$?; [ $s != 0 ] && git stash save "tmp stash from stash-rename"; git stash apply $rev && shift && git stash save "$@" && [ $s != 0 ] && git stash pop stash@{1}; }; _'
-	reset-branch = '!_() { git checkout -B "$1" "origin/$1" }; _'
+	reset-branch = '!_() { git checkout -B "$1" "origin/$1"; }; _'
 [commit]
 	template = ~/.gitmessage
 [diff]
