@@ -1,4 +1,4 @@
-// .mongorc.js
+// ~/.mongorc.js
 
 var requestNb = 0;
 
