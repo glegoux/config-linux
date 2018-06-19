@@ -90,7 +90,7 @@ if [ -f ~/.git-completion.bash ]; then
 fi
 
 if [ -f ~/.git-prompt.sh ]; then
-    . source ~/.git-prompt.sh
+    . ~/.git-prompt.sh
 fi
 
 # check the window size after each command and, if necessary,
