@@ -84,6 +84,15 @@ white='\[\033[0;37m\]'
 WHITE='\[\033[1;37m\]'
 NC='\[\033[0m\]'
 
+# Git
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+
+if [ -f ~/.git-prompt.sh ]; then
+    . source ~/.git-prompt.sh
+fi
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -98,7 +107,9 @@ pre_prompt() {
     local u="$(whoami)"
     local h="$(hostname)"
     # for git prompt
-    local g="$(__git_ps1)"
+    if [ -f ~/.git-prompt.sh ]; then
+      local g="$(__git_ps1)"
+    fi
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
