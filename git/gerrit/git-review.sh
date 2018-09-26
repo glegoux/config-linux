@@ -2,7 +2,7 @@
 
 # constant
 
-GERRIT_URL="" # TO COMPLETE
+GERRIT_URL="" # TO COMPLETE (without '/' at the end)
 
 # helper function
 
