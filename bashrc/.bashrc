@@ -162,14 +162,3 @@ pre_prompt() {
 }
 
 PROMPT_COMMAND=pre_prompt
-
-# Personal script & Spark
-export PATH="$HOME/bin:$HOME/opt/spark/spark-2.0.1-bin-hadoop2.7/bin:$HOME/opt/spark/spark-2.0.1-bin-ha
-doop2.7/sbin:$PATH"
-
-# Anaconda
-export ANACONDA_HOME="${HOME}/opt/anaconda3"
-export ANACONDA_ENV="conda-stats"
-
-alias conda-start="source ${ANACONDA_HOME}/bin/activate ${ANACONDA_HOME}/envs/${ANACONDA_ENV}"
-alias conda-stop="source deactivate ${ANACONDA_ENV}"
