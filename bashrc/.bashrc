@@ -88,7 +88,7 @@ NC='\[\033[0m\]'
 # Define bash prompt on 2 lines with:
 # - last shell command exit status if error (> 0)
 # - git prompt if context is in git reposiory
-# - python prompt if virtualenv or conda env activated
+# - python prompt if virtual env or conda env activated
 pre_prompt() {
     # get exit status all right
     local -i exit_status="$?"
