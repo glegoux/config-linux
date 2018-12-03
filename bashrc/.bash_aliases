@@ -1,3 +1,13 @@
+# Basic commands
+alias ll='ls -alh'
+alias lx='ls -alhX'
+alias rm='trash-put -vi'
+alias cp='cp -vi'
+alias mv='mv -vi'
+alias df='df -h'
+alias du='du -mhc'
+alias ls='ls --color=auto'
+
 # Go to trash folder on Ubuntu
 alias go-trash='cd ~/.local/share/Trash'
 
