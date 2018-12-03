@@ -107,9 +107,7 @@ pre_prompt() {
     local u="$(whoami)"
     local h="$(hostname)"
     # for git prompt
-    if [ -f ~/.git-prompt.sh ]; then
-      local g="$(__git_ps1)"
-    fi
+    local g="$(__git_ps1)"
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
