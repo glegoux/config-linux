@@ -53,16 +53,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# basic commands
-alias ll='ls -alh'
-alias lx='ls -alhX'
-alias rm='trash-put -vi'
-alias cp='cp -vi'
-alias mv='mv -vi'
-alias df='df -h'
-alias du='du -mhc'
-alias ls='ls --color=auto'
-
 # MANAGE PROMPT
 # color
 red='\[\033[0;31m\]'
