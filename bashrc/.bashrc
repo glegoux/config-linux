@@ -90,13 +90,11 @@ NC='\[\033[0m\]'
 # - git prompt if context is in git reposiory
 # - python prompt if virtual env or conda env activated
 pre_prompt() {
-    # get exit status all right
+    # line 1 responsive
     local -i exit_status="$?"
-    # line 1 without color
     local color=${YELLOW}
     local u="$(whoami)"
     local h="$(hostname)"
-    # for git prompt
     local g="$(__git_ps1)"
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
@@ -109,14 +107,12 @@ pre_prompt() {
       pyenv=$(basename "${CONDA_DEFAULT_ENV}")
     fi 
     if [ -n "${pyenv}" ]; then
-      pyenv="(${pyenv}) "
-      l1="${pyenv}${l1}"
+      l1="(${pyenv}) ${l1}"
     fi
     if [[ ${exit_status} -ne 0 ]]; then
         l1="${exit_status}|${l1}"
     fi
     l1="[${l1}]"
-    # responsive prompt if line 1 too long
     local l1_size=${#l1}
     local d=""
     local delta=""
@@ -137,14 +133,13 @@ pre_prompt() {
             return
         fi
     fi
-    # line 1 with color
-    pyenv="${GREEN}${pyenv}${NC}${YELLOW}"
+    pyenv="${GREEN}${pyenv}${NC}${color}"
     if [[ ${exit_status} -eq 0 ]]; then
         l1="${color}[${pyenv}${u}: ${wd}${g}]${d}"
     else
         l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${g}]${d}"
     fi
-    # line 2 with color
+    # line 2
     local t="$(date "+%H:%M:%S")"
     local l2="${color}[$t]-\\$ ${NC}"
     export PS1="${l1}\n${l2}"
