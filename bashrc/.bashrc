@@ -128,8 +128,8 @@ pre_prompt() {
         fi
     fi
     # recompute line 1 with color
-    pyenv="${GREEN}${pyenv}${color}"
-    git="${CYAN}${g}${color}"
+    pyenv="${GREEN}(${pyenv})${color} "
+    git="${CYAN}${git}${color}"
     if [[ ${exit_status} -eq 0 ]]; then
         l1="${color}[${pyenv}${u}: ${wd}${git}]${d}"
     else
