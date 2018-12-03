@@ -111,7 +111,7 @@ pre_prompt() {
     local l1_size=${#l1}
     local d=""
     local delta=""
-    if [[ ${COLUMNS} -gt ${l1_size} ]]; then
+    if [ ${COLUMNS} -gt ${l1_size} ]; then
         delta="$((${COLUMNS}-${l1_size}))"
         if [[ ${TERM} != "ansi" ]]; then
             # if terminal is not for eclipse
@@ -119,7 +119,7 @@ pre_prompt() {
         fi
     else
         delta="$((${l1_size}-${COLUMNS}+3))"
-        if [[ ${delta} -lt ${#wd} ]]; then
+        if [ ${delta} -lt ${#wd} ]; then
             wd="${wd:${delta}}"
             wd="...${wd}"
         else
@@ -129,13 +129,13 @@ pre_prompt() {
         fi
     fi
     # recompute line 1 with color
-    if [[ -n ${pyenv} ]]; then
+    if [ -n ${pyenv} ]; then
       pyenv="${GREEN}(${pyenv})${color} "
     fi
-    if [[ -n ${git} ]]; then
+    if [ -n ${git} ]; then
       git="${CYAN}${git}${color}"
     fi
-    if [[ ${exit_status} -ne 0 ]]; then
+    if [ ${exit_status} -ne 0 ]; then
         status="${RED}${exit_status}${color}|"
     fi
     l1="${color}[${status}${pyenv}${u}: ${wd}${git}]${d}"
