@@ -84,8 +84,9 @@ NC='\[\033[0m\]'
 # - git prompt if context is in git reposiory
 # - python prompt if virtual env or conda env activated
 pre_prompt() {
-    # line 1
+    # line 1 responsive without color
     local -i exit_status="$?"
+    local status
     local color=${YELLOW}
     local u="$(whoami)"
     local h="$(hostname)"
@@ -128,13 +129,16 @@ pre_prompt() {
         fi
     fi
     # recompute line 1 with color
-    pyenv="${GREEN}(${pyenv})${color} "
-    git="${CYAN}${git}${color}"
-    if [[ ${exit_status} -eq 0 ]]; then
-        l1="${color}[${pyenv}${u}: ${wd}${git}]${d}"
-    else
-        l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${git}]${d}"
+    if [[ -n ${pyenv} ]]; then
+      pyenv="${GREEN}(${pyenv})${color} "
     fi
+    if [[ -n ${git} ]]; then
+      git="${CYAN}${git}${color}"
+    fi
+    if [[ ${exit_status} -ne 0 ]]; then
+        status="${RED}${exit_status}${color}|"
+    fi
+    l1="${color}[${status}${pyenv}${u}: ${wd}${git}]${d}"
     # line 2
     local t="$(date "+%H:%M:%S")"
     local l2="${color}[$t]-\\$ ${NC}"
