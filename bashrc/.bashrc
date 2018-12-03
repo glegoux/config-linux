@@ -24,6 +24,10 @@ export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
+# Check window size after each command
+shopt -s checkwinsize
+export LINES COLUMNS
+
 # Enable extensions
 # bash
 if [ -f ~/.bash_functions ]; then
@@ -60,7 +64,7 @@ if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
 fi
 
-# Manage Bash prompt
+# Manage bash prompt
 # color
 red='\[\033[0;31m\]'
 RED='\[\033[1;31m\]'
@@ -81,11 +85,7 @@ white='\[\033[0;37m\]'
 WHITE='\[\033[1;37m\]'
 NC='\[\033[0m\]'
 
-# Check window size after each command
-shopt -s checkwinsize
-export LINES COLUMNS
-
-# Bash prompt on 2 lines with:
+# Define bash prompt on 2 lines with:
 # - last shell command exit status if error (> 0)
 # - git prompt if context is in git reposiory
 # - python prompt if virtualenv or conda env activated
