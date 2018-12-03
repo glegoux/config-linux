@@ -37,10 +37,6 @@ if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-if [ -f ~/.bashrc_bhist ]; then
-      . ~/.bashrc_bhist
-fi
-
 if [ -f ~/.bash_clean ]; then
     . ~/.bash_clean
 fi
@@ -50,6 +46,10 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 # bhist
+if [ -f ~/.bashrc_bhist ]; then
+      . ~/.bashrc_bhist
+fi
+
 if [ -f ~/.bash_aliases_bhist ]; then
       . ~/.bash_aliases_bhist
 fi
