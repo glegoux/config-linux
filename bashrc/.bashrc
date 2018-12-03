@@ -56,8 +56,7 @@ if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
 fi
 
-# Manage bash prompt
-# color
+# Color
 red='\[\033[0;31m\]'
 RED='\[\033[1;31m\]'
 green='\[\033[0;32m\]'
