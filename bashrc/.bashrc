@@ -148,7 +148,6 @@ pre_prompt() {
     local t="$(date "+%H:%M:%S")"
     local l2="${color}[$t]-\\$ ${NC}"
     export PS1="${l1}\n${l2}"
-
 }
 
 PROMPT_COMMAND=pre_prompt
