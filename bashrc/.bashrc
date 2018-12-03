@@ -52,14 +52,6 @@ if [ -f ~/.bash_aliases_bhist ]; then
 fi
 
 # git
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
-fi
-
-if [ -f ~/.git-prompt.sh ]; then
-    . ~/.git-prompt.sh
-fi
-
 if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
 fi
