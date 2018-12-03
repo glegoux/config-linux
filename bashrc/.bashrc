@@ -3,57 +3,64 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# make less more friendly for non-text input files, see lesspipe(2)
+# Make less more friendly for non-text input files, see lesspipe(2)
 [ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
 
-# choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
+# Choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
 #setxkbmap fr
 #setxkbmap us
 
 # don't overwrite with >
 #set -C
 
+# Search through shell command history
 # Ctrl-s to step forward 
 # Ctrl-r to step backward
 stty -ixon
 
-# command history
+# Command history
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
 
-# enable bash functions
+# Enable extensions
+# bash
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
 
-# enable browsing history
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
 fi
 
-# enable browsing history aliases
-if [ -f ~/.bash_aliases_bhist ]; then
-      . ~/.bash_aliases_bhist
-fi
-
-# enable git config
-if [ -f ~/.bashrc_git ]; then
-    . ~/.bashrc_git
-fi
-
-# enable bash clean
 if [ -f ~/.bash_clean ]; then
     . ~/.bash_clean
 fi
 
-# enable bash alias
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# MANAGE PROMPT
+# bhist
+if [ -f ~/.bash_aliases_bhist ]; then
+      . ~/.bash_aliases_bhist
+fi
+
+# git
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
+fi
+
+if [ -f ~/.git-prompt.sh ]; then
+    . ~/.git-prompt.sh
+fi
+
+if [ -f ~/.bashrc_git ]; then
+    . ~/.bashrc_git
+fi
+
+# Manage Bash prompt
 # color
 red='\[\033[0;31m\]'
 RED='\[\033[1;31m\]'
@@ -74,21 +81,14 @@ white='\[\033[0;37m\]'
 WHITE='\[\033[1;37m\]'
 NC='\[\033[0m\]'
 
-# Git
-if [ -f ~/.git-completion.bash ]; then
-    . ~/.git-completion.bash
-fi
-
-if [ -f ~/.git-prompt.sh ]; then
-    . ~/.git-prompt.sh
-fi
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
+# Check window size after each command
 shopt -s checkwinsize
 export LINES COLUMNS
 
-
+# Bash prompt on 2 lines with:
+# - last shell command exit status if error (> 0)
+# - git prompt if context is in git reposiory
+# - python prompt if virtualenv or conda env activated
 pre_prompt() {
     # get exit status all right
     local -i exit_status="$?"
