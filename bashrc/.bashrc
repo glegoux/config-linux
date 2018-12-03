@@ -23,6 +23,9 @@ stty -ixon
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
+# size history
+export HISTSIZE=1000
+export HISTFILESIZE=2000
 
 # Check window size after each command
 shopt -s checkwinsize
