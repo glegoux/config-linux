@@ -23,7 +23,7 @@ stty -ixon
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
-# size history
+# history size
 export HISTSIZE=1000
 export HISTFILESIZE=2000
 
@@ -84,18 +84,18 @@ NC='\[\033[0m\]'
 # - git prompt if context is in git reposiory
 # - python prompt if virtual env or conda env activated
 pre_prompt() {
-    # line 1 responsive
+    # line 1
     local -i exit_status="$?"
     local color=${YELLOW}
     local u="$(whoami)"
     local h="$(hostname)"
-    local g="$(__git_ps1)"
+    local git="$(__git_ps1)"
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    local l1="${u}: ${wd}${g}"
+    local l1="${u}: ${wd}${git}"
     local pyenv=$(basename "${VIRTUAL_ENV}")
     if [ -z "${pyenv}" ]; then
       pyenv=$(basename "${CONDA_DEFAULT_ENV}")
@@ -127,11 +127,13 @@ pre_prompt() {
             return
         fi
     fi
-    pyenv="${GREEN}${pyenv}${NC}${color}"
+    # recompute line 1 with color
+    pyenv="${GREEN}${pyenv}${color}"
+    git="${CYAN}${g}${color}"
     if [[ ${exit_status} -eq 0 ]]; then
-        l1="${color}[${pyenv}${u}: ${wd}${g}]${d}"
+        l1="${color}[${pyenv}${u}: ${wd}${git}]${d}"
     else
-        l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${g}]${d}"
+        l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${git}]${d}"
     fi
     # line 2
     local t="$(date "+%H:%M:%S")"
