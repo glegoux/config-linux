@@ -39,7 +39,7 @@ sudo apt-get install gitg
 see https://wiki.gnome.org/action/show/Apps/Gitg .
 
 ~~~ bash
-sudo apt-get install gitk
+sudo apt-get install git-gui gitk
 ~~~
 
 see `man gitk`.
