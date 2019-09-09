@@ -1,6 +1,6 @@
 # config-linux
 
-Linux configuration system for development under Ubuntu 16.04 LTS desktop.  
+Linux configuration system for development under Ubuntu 18.04 LTS (Bionic Beaver) desktop.  
 
 Website : http://www.ubuntu.com/desktop  
 Wiki : https://wiki.ubuntu.com/LTS  
