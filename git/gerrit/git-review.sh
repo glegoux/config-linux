@@ -85,7 +85,7 @@ if [[ "${FUNCNAME[0]}" == "main" ]]; then
 
   read -p "Do you want push one review on ${current_branch} branch ? [Y/n]: " \
     answer
-  if [[ "${answer}" != "Y" ]]; then
+  if ! [[ "${answer}" =~ ^(|y|Y)$ ]]; then
     exit 0
   fi
 
