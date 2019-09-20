@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
-# constant
+# configuration
 
-GERRIT_URL="" # TO COMPLETE (without '/' at the end)
+GERRIT_URL="" # TO COMPLETE (without '/' at the end) for example: https://gerrit.googlesource.com
+
+if [[ "${GERRIT_URL}" == "" || "${GERRIT_URL}" =~ /$ ]]; then
+  >&2 echo "ERROR: please define correctly GERRIT_URL"
+  exit 1
+fi
 
 # helper function
 
