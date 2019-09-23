@@ -1,11 +1,18 @@
 #!/usr/bin/env bash
 
+set -e
+
 # configuration
+
+if ! git rev-parse --git-dir &> /dev/null; then 
+  >&2 echo "ERROR: current directory $(pwd) is not a git repository!"
+  exit 1
+fi
 
 GERRIT_URL="" # TO COMPLETE (without '/' at the end) for example: https://gerrit.googlesource.com
 
 if [[ "${GERRIT_URL}" == "" || "${GERRIT_URL}" =~ /$ ]]; then
-  >&2 echo "ERROR: please define correctly GERRIT_URL"
+  >&2 echo "ERROR: please define correctly GERRIT_URL!"
   exit 1
 fi
 
