@@ -2,12 +2,12 @@
 
 set -e
 
-# configuration
-
 if ! git rev-parse --git-dir &> /dev/null; then 
   >&2 echo "ERROR: current directory $(pwd) is not a git repository!"
   exit 1
 fi
+
+# configuration
 
 GERRIT_URL="" # TO COMPLETE (without '/' at the end) for example: https://gerrit.googlesource.com
 
