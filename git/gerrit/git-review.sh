@@ -39,7 +39,7 @@ get_commit_id() {
 get_n_patch_sets() {
     local result="$1"
     local commit_id="$2"
-    echo "${result}" | jq .revisions."${commit_id}"._number
+    echo "${result}" | jq .revisions.\"${commit_id}\"._number
 }
 
 # script
