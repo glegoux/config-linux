@@ -6,5 +6,5 @@ $ sudo apt install terminator
 
 ~~~
 $ terminator --version
-terminator 0.98
+terminator 1.91
 ~~~
