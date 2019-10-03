@@ -4,9 +4,25 @@ Website https://git-scm.com/ .
 
 ## Git Repo
 
+Git source code used Git itself for versioning.
+
 * HTML : https://git.kernel.org/cgit/git/git-htmldocs.git/
 * Man Pages : https://git.kernel.org/cgit/git/git-manpages.git/
 * Source code : https://git.kernel.org/cgit/git/git.git/
+
+## Version
+
+See your version with:
+
+```
+git --version
+```
+
+Check release note:
+
+```
+curl https://git.kernel.org/pub/scm/git/git.git/tree/Documentation/RelNotes/$(git --version | cut -f3 -d' ').txt
+```
 
 ## PPA
 
