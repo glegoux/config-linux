@@ -39,6 +39,6 @@
 	mnemonicPrefix = true
 	renames = true
 [pull]
-	rebase = preserve
+	rebase = true
 [push]
 	default = simple
