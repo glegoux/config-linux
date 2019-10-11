@@ -16,6 +16,12 @@ Use also `gsettings` in the terminal shell.
 
 Run ` compizconfig-settings-manager` with the command `ccsm` .
 
+Install and use `Tweaks`:
+
+```
+sudo apt install gnome-shell-extensions gnome-shell-extension-dash-to-panel gnome-tweaks adwaita-icon-theme-full
+```
+
 ## configuration
 
 Enable minimise a windows when clik related windows icon on the Ubuntu Dock:
