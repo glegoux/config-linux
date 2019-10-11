@@ -15,3 +15,11 @@ sudo apt-get install dconf-editor gconf-editor compizconfig-settings-manager
 Use also `gsettings` in the terminal shell.  
 
 Run ` compizconfig-settings-manager` with the command `ccsm` .
+
+# Configuration
+
+Enable minimise a windows when clik related windows icon on the Ubuntu Dock:
+
+~~~
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+~~~
