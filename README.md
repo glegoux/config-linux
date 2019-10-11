@@ -17,10 +17,10 @@ Use also `gsettings` in the terminal shell.
 
 Run ` compizconfig-settings-manager` with the command `ccsm` .
 
-Install and use `Tweaks`:
+Install and use `Gnome Tweaks`:
 
 ```
-sudo apt install gnome-shell-extensions \
+sudo apt install gnome-tweaks gnome-shell-extensions \
   gnome-shell-extension-dash-to-panel gnome-tweaks adwaita-icon-theme-full
 ```
 
