@@ -9,7 +9,8 @@ Help : https://help.ubuntu.com/
 To see file configuration for each technology, install these three GUI settings managers:
 
 ~~~ bash
-sudo apt-get install dconf-editor gconf-editor compizconfig-settings-manager
+sudo apt-get install dconf-editor gconf-editor \
+  compizconfig-settings-manager
 ~~~
 
 Use also `gsettings` in the terminal shell.  
@@ -19,7 +20,8 @@ Run ` compizconfig-settings-manager` with the command `ccsm` .
 Install and use `Tweaks`:
 
 ```
-sudo apt install gnome-shell-extensions gnome-shell-extension-dash-to-panel gnome-tweaks adwaita-icon-theme-full
+sudo apt install gnome-shell-extensions \
+  gnome-shell-extension-dash-to-panel gnome-tweaks adwaita-icon-theme-full
 ```
 
 ## configuration
