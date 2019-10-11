@@ -16,7 +16,7 @@ Use also `gsettings` in the terminal shell.
 
 Run ` compizconfig-settings-manager` with the command `ccsm` .
 
-# Configuration
+## configuration
 
 Enable minimise a windows when clik related windows icon on the Ubuntu Dock:
 
