@@ -155,3 +155,4 @@ pre_prompt() {
 PROMPT_COMMAND=pre_prompt
 
 export EDITOR=vim
+export TERM=xterm-color
