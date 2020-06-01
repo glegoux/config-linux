@@ -26,14 +26,22 @@ export LANGUAGE=en_US.UTF-8
 # step backward: Ctrl-r
 #stty -ixon
 
-# don't put duplicate lines in the history.
-export HISTCONTROL=ignoredups
-# ... and ignore same sucessive entries.
+# define history file location
+export HISTFILE=~/.bash_history
+
+# append current shell session history to history file after logout
+shopt -s histappend
+
+# define history size in memory and in file
+export HISTSIZE=500
+export HISTFILESIZE=5000
+
+# don't put duplicate lines in the history and  by a space character
 export HISTCONTROL=ignoreboth
 
 ## EDITOR ##
 
-# by default
+# define default editor
 export EDITOR=vim
 
 # make less more friendly for non-text input files, see lesspipe(2)
