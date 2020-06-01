@@ -5,8 +5,7 @@
 # Should be loaded at the beginning of a bash interactive session,
 # for reloading do: source ~/.bashrc
 #
-# See documentation:
-# https://www.gnu.org/software/bash/manual/bash.html
+# See documentation at https://www.gnu.org/software/bash/manual/bash.html
 # or with 'man bash' for bash(1) manual
 # or with bash --help
 
