@@ -29,12 +29,21 @@ export LANGUAGE=en_US.UTF-8
 # define history file location
 export HISTFILE=~/.bash_history
 
-# append current shell session history to history file after logout
+# define the maximum number of history entries
+# current session
+export HISTSIZE=500
+# history file
+export HISTFILESIZE=5000
+
+# ignore some commands to store in history
+export HISTIGNORE=""
+
+# append current session history to history file instead of overwriting
+# when the session is terminated
 shopt -s histappend
 
-# define history size in memory and in file
-export HISTSIZE=500
-export HISTFILESIZE=5000
+# store multi-line commands in one history entry
+shopt -s cmdhist
 
 # don't put duplicate lines in the history and  by a space character
 export HISTCONTROL=ignoreboth
