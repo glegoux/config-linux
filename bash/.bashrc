@@ -3,31 +3,48 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# make less more friendly for non-text input files, see lesspipe(2)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+## KEYBOARD ##
 
-# choose type of keyboard AZERTY(fr)/QWERTY(us) (see virtual keyboard)
-#setxkbmap fr
-#setxkbmap us
+# see virtual keyboard
+#setxkbmap fr # AZERTY (fr)
+#setxkbmap us # QWERTY (us)
 
-# don't overwrite with >
+## LANGUAGES AND ENCODING ##
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+
+## REDIRECTION ##
+
+# don't overwrite target with bash redirection ">"
 #set -C
 
-# Ctrl-s to step forward 
-# Ctrl-r to step backward
-# stty -ixon
+## HISTORY ##
 
-# command history
-# don't put duplicate lines in the history. See bash(1) for more options
+# step forward:  Ctrl-s
+# step backward: Ctrl-r
+#stty -ixon
+
+# don't put duplicate lines in the history.
 export HISTCONTROL=ignoredups
 # ... and ignore same sucessive entries.
 export HISTCONTROL=ignoreboth
+
+## EDITOR ##
+
+# by default
+export EDITOR=vim
+
+# make less more friendly for non-text input files, see lesspipe(2)
+[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+
+## BASH EXTENSIONS ##
 
 # enable bash functions
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
-
 # enable browsing history
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
@@ -53,7 +70,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# basic commands
+## ALIASES ##
+
 alias ll='ls -alh'
 alias lx='ls -alhX'
 alias rm='trash-put -vi'
@@ -63,7 +81,8 @@ alias df='df -h'
 alias du='du -mhc'
 alias ls='ls --color=auto'
 
-# MANAGE PROMPT
+## PROMPT ##
+
 # color
 red='\[\033[0;31m\]'
 RED='\[\033[1;31m\]'
@@ -89,7 +108,6 @@ NC='\[\033[0m\]'
 shopt -s checkwinsize
 export LINES COLUMNS
 
-
 pre_prompt() {
     # get exit status all right
     local -i exit_status="$?"
@@ -108,7 +126,7 @@ pre_prompt() {
     local pyenv=$(basename "${VIRTUAL_ENV}")
     if [ -z "${pyenv}" ]; then
       pyenv=$(basename "${CONDA_DEFAULT_ENV}")
-    fi 
+    fi
     if [ -n "${pyenv}" ]; then
       pyenv="(${pyenv}) "
       l1="${pyenv}${l1}"
@@ -151,8 +169,4 @@ pre_prompt() {
     export PS1="${l1}\n${l2}"
 
 }
-
 PROMPT_COMMAND=pre_prompt
-
-export EDITOR=vim
-export TERM=xterm-color
