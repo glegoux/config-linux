@@ -1,4 +1,14 @@
 # ~/.bashrc
+#
+# Configuration for interactive bash shell
+#
+# Should be loaded at the beginning of a bash interactive session,
+# for reloading do: source ~/.bashrc
+#
+# See documentation:
+# https://www.gnu.org/software/bash/manual/bash.html
+# or with 'man bash' for bash(1) manual
+# or with bash --help
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -47,6 +57,9 @@ shopt -s cmdhist
 
 # don't put duplicate lines in the history and  by a space character
 export HISTCONTROL=ignoreboth
+
+# format history output with timestamp of the command
+export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
 
 ## EDITOR ##
 
