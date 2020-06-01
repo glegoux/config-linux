@@ -41,10 +41,25 @@ export EDITOR=vim
 
 ## BASH EXTENSIONS ##
 
+# Native:
+
 # enable bash functions
 if [ -f ~/.bash_functions ]; then
     . ~/.bash_functions
 fi
+
+# enable bash clean
+if [ -f ~/.bash_clean ]; then
+    . ~/.bash_clean
+fi
+
+# enable bash alias
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Specific:
+
 # enable browsing history
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
@@ -58,16 +73,6 @@ fi
 # enable git config
 if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
-fi
-
-# enable bash clean
-if [ -f ~/.bash_clean ]; then
-    . ~/.bash_clean
-fi
-
-# enable bash alias
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
 fi
 
 ## ALIASES ##
