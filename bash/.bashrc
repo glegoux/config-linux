@@ -27,8 +27,8 @@ export LANGUAGE=en_US.UTF-8
 ## XTERM ###
 
 # set xterm values to color terminal
-# see infocmp xterm
 # possible values: xterm, xterm-256color
+# see infocmp xterm (TERM value)
 export TERM=xterm
 
 ## REDIRECTION ##
