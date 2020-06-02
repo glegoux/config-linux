@@ -9,7 +9,7 @@
 # or with 'man bash' for bash(1) manual
 # or with bash --help
 
-# If not running interactively, don't do anything
+# if not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
 ## KEYBOARD ##
@@ -18,11 +18,18 @@
 #setxkbmap fr # AZERTY (fr)
 #setxkbmap us # QWERTY (us)
 
-## LANGUAGES AND ENCODING ##
+## LANGUAGE AND ENCODING ##
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
+
+## XTERM ###
+
+# set xterm values to color terminal
+# see infocmp xterm-256color
+# possible values: xterm, xterm-256color, xtxterm-16color, or xterm-color
+export TERM=xterm
 
 ## REDIRECTION ##
 
