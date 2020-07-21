@@ -26,12 +26,12 @@ __git_home() {
 alias git-home="__git_home"
 
 # Import environment
-if [ -f /etc/bash_completion.d/git-prompt ]; then
-    . /etc/bash_completion.d/git-prompt
+if [ -f ~/.git-prompt.sh ]; then
+    . ~/.git-prompt.sh
 fi
 
-if [ -f /usr/share/bash-completion/completions/git ]; then
-    . /usr/share/bash-completion/completions/git
+if [ -f ~/.git-completion.bash ]; then
+    . ~/.git-completion.bash
 fi
 
 # Prompt with configuration of the variable __git_ps1 to $PS1
