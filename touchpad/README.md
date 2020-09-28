@@ -26,5 +26,3 @@ See properties touchpad:
 xinput --list-props ${device_id}
 ```
 
-*References*
-
