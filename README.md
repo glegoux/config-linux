@@ -1,6 +1,6 @@
-# config-linux
+# Config Linux
 
-Linux configuration system for development under Ubuntu 20.04 LTS (Focal Fossa) desktop.  
+Linux configuration system for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**.  
 
 Website : http://www.ubuntu.com/desktop   
 Wiki : https://wiki.ubuntu.com/LTS  
