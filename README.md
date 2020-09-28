@@ -1,10 +1,13 @@
 # Config Linux
 
-Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**.  
+Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**, it works only for Ubuntu server and Ubuntu wsl.  
 
-Website : http://www.ubuntu.com/desktop   
-Wiki : https://wiki.ubuntu.com/LTS  
-Help : https://help.ubuntu.com  
+Website : https://ubuntu.com
+Desktop : https://www.ubuntu.com/desktop  
+Server  : https://www.ubuntu.com/server  
+WSL     : https://www.ubuntu.com/wsl  
+Wiki    : https://wiki.ubuntu.com/LTS  
+Help    : https://help.ubuntu.com  
 
 To configure and see the Ubuntu configurations, install these three settings managers:
 
