@@ -1,6 +1,6 @@
 # Config Linux
 
-Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**, it works only for Ubuntu server and Ubuntu wsl. It can work for **another Linux distribution or operating system** by using configurations of cross-platform tools.   
+Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**, it works also for Ubuntu server and Ubuntu wsl. It can work for **another Linux distribution or operating system** by using configurations of cross-platform tools.   
 
 Website : https://ubuntu.com  
 Desktop : https://www.ubuntu.com/desktop  
