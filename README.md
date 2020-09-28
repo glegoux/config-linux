@@ -6,7 +6,7 @@ Website : http://www.ubuntu.com/desktop
 Wiki : https://wiki.ubuntu.com/LTS  
 Help : https://help.ubuntu.com  
 
-To see configuration file for each technology, install these three GUI settings managers:
+To configure and see the Ubuntu configurations, install these three settings managers:
 
 ~~~ bash
 sudo apt-get install dconf-editor gconf-editor \
@@ -23,11 +23,3 @@ Install and use `Gnome Tweaks`:
 sudo apt install gnome-tweaks gnome-shell-extensions \
   gnome-shell-extension-dash-to-panel gnome-tweaks adwaita-icon-theme-full
 ```
-
-## configuration
-
-Enable minimise a windows when clik related windows icon on the Ubuntu Dock:
-
-~~~
-gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
-~~~
