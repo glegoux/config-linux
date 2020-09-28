@@ -122,6 +122,15 @@ alias df='df -h'
 alias du='du -mhc'
 alias ls='ls --color=auto'
 
+##  WINDOWS SUBSYSTEM FOR LINUX ##
+
+if grep -q Microsoft /proc/version; then
+  export DISPLAY=:0
+  alias docker=docker.exe
+  alias powershell=powershell.exe
+  export LS_COLORS='ow=01;36;40'
+fi
+
 ## PROMPT ##
 
 # color
