@@ -122,7 +122,7 @@ alias df='df -h'
 alias du='du -mhc'
 alias ls='ls --color=auto'
 
-##  WINDOWS SUBSYSTEM FOR LINUX ##
+## WINDOWS SUBSYSTEM FOR LINUX ##
 
 if grep -q Microsoft /proc/version; then
   export DISPLAY=:0
