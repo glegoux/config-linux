@@ -1,12 +1,12 @@
 # Config Linux
 
-Linux configuration system for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**.  
+Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**.  
 
 Website : http://www.ubuntu.com/desktop   
 Wiki : https://wiki.ubuntu.com/LTS  
 Help : https://help.ubuntu.com  
 
-To see file configuration for each technology, install these three GUI settings managers:
+To see configuration file for each technology, install these three GUI settings managers:
 
 ~~~ bash
 sudo apt-get install dconf-editor gconf-editor \
