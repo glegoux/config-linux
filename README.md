@@ -2,7 +2,7 @@
 
 Linux system configuration for development under **Ubuntu 20.04 LTS (Focal Fossa) desktop**, it works only for Ubuntu server and Ubuntu wsl.  
 
-Website : https://ubuntu.com
+Website : https://ubuntu.com  
 Desktop : https://www.ubuntu.com/desktop  
 Server  : https://www.ubuntu.com/server  
 WSL     : https://www.ubuntu.com/wsl  
