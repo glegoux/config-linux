@@ -1,10 +1,10 @@
 # config-linux
 
-Linux configuration system for development under Ubuntu 18.04 LTS (Bionic Beaver) desktop.  
+Linux configuration system for development under Ubuntu 20.04 LTS (Focal Fossa) desktop.  
 
-Website : http://www.ubuntu.com/desktop  
+Website : http://www.ubuntu.com/desktop   
 Wiki : https://wiki.ubuntu.com/LTS  
-Help : https://help.ubuntu.com/  
+Help : https://help.ubuntu.com  
 
 To see file configuration for each technology, install these three GUI settings managers:
 
