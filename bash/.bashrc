@@ -121,6 +121,8 @@ alias mv='mv -vi'
 alias df='df -h'
 alias du='du -mhc'
 alias ls='ls --color=auto'
+alias sh="PS1='sh> ' sh"
+alias zsh="PS1='zsh> ' zsh"
 
 ## WINDOWS SUBSYSTEM FOR LINUX ##
 
