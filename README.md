@@ -9,14 +9,14 @@ WSL     : https://www.ubuntu.com/wsl
 Wiki    : https://wiki.ubuntu.com/LTS  
 Help    : https://help.ubuntu.com  
 
-To configure and see the Ubuntu configurations, install these three settings managers:
+To configure and see the Ubuntu configurations, install these 3 settings managers:
 
 ~~~ bash
 sudo apt-get install dconf-editor gconf-editor \
   compizconfig-settings-manager
 ~~~
 
-Use also `gsettings` in the terminal shell.  
+Use also `gsettings` in a terminal.  
 
 Run ` compizconfig-settings-manager` with the command `ccsm` .
 
