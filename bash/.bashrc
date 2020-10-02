@@ -133,25 +133,24 @@ fi
 
 ## PROMPT ##
 
-# color
-red='\[\033[0;31m\]'
-RED='\[\033[1;31m\]'
-green='\[\033[0;32m\]'
-GREEN='\[\033[1;32m\]'
-yellow='\[\033[0;33m\]'
-YELLOW='\[\033[1;33m\]'
-orange='\[\033[0;38;5;215m\]'
-ORANGE='\[\033[1;38;5;215m\]'
-blue='\[\033[0;34m\]'
-coldblue='\[\033[0;38;5;33m\]'
-BLUE='\[\033[1;34m\]'
-magenta='\[\033[0;35m\]'
-MAGENTA='\[\033[1;35m\]'
-cyan='\[\033[0;36m\]'
-CYAN='\[\033[1;36m\]'
-white='\[\033[0;37m\]'
-WHITE='\[\033[1;37m\]'
-NC='\[\033[0m\]'
+# color (compatible dash)
+black="$(tput setaf 0)"
+BLACK="$(tput bold)${black}"
+red="$(tput setaf 1)"
+RED="$(tput bold)${red}"
+green="$(tput setaf 2)"
+GREEN="$(tput bold)${green}"
+yellow="$(tput setaf 3)"
+YELLOW="$(tput bold)${yellow}"
+blue="$(tput setaf 4)"
+BLUE="$(tput bold)${blue}"
+magenta="$(tput setaf 5)"
+MAGENTA="$(tput bold)${magenta}"
+cyan="$(tput setaf 6)"
+CYAN="$(tput bold)${cyan}"
+white="$(tput setaf 7)"
+WHITE="$(tput bold)${white}"
+NC="$(tput sgr0)"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
