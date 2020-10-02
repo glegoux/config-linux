@@ -23,10 +23,10 @@ precmd() {
     local h="$(hostname)"
     local t="$(date "+%H:%M:%S")"
     local wd="${PWD}"
-    p="%{$fg_bold[yellow]%}[${u}@telecom-paris]-[${t}]-$ %{$reset_color%}"
+    p="%{$fg_bold[yellow]%}[${u}]-[${t}]-$ %{$reset_color%}"
     if [[ ${exit_status} -ne 0 ]]; then
         ep="%{$fg_bold[red]%}${exit_status}%{$reset_color%}"
-        p="%{$fg_bold[yellow]%}[%{$reset_color%}${ep}%{$fg_bold[yellow]%}|${u}@telecom-paris]-[${t}]-$ %{$reset_color%}"
+        p="%{$fg_bold[yellow]%}[%{$reset_color%}${ep}%{$fg_bold[yellow]%}|${u}]-[${t}]-$ %{$reset_color%}"
     fi
     export PS1="${p}"
 }
