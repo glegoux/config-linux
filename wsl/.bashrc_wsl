@@ -50,4 +50,3 @@ if grep -q Microsoft /proc/version; then
   # Prevent that this function be overriden
   readonly -f cd
 fi
-fi
