@@ -1,6 +1,6 @@
 # ~/.bashrc_extensions
 #
-# Specific bash extensions
+# Load the chosen bash extensions
 
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
