@@ -28,11 +28,12 @@ if grep -q Microsoft /proc/version; then
   #   next character in Bash. Furthermore just note that Windows paths are not case
   #   sensitive.
   #   Usual cd commands continue working with:
-  #   cd ~; cd -; cd ..; cd; cd [options] [path]; 
-  #   cd [relative_linux_path]; cd [relative_linux_path]; 
+  #   cd ~; cd -; cd ..; cd; cd [options] [path];
+  #   cd [relative_linux_path]; cd [relative_linux_path];
   #   ...
-  #   /!\ If you use a cd option then a path with white characters, it doesn't work
-  #   For example: 'cd 'C:\Users\Program Files'' works, but 'cd -L 'C:\Users\Program Files'' not.
+  #   The autocompletion doesn't work on Windows path.
+  #   This override is not exported, it is only available in the read-eval-print loop
+  #   for the current interactive bash session.
   # Global:
   #  Same that builtin cd command
   # Parameter:
@@ -41,13 +42,20 @@ if grep -q Microsoft /proc/version; then
   #  Same that builtin cd command
   #
   cd () {
-    local params=$(echo $@ | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/')
-    if [[ -z "${params}" ]]; then
-      builtin cd
+    local last_param="${@: -1}";
+    local dir="";
+    if [[ $# -gt 0 ]] && [[ ! "${last_param}" =~ ^(-@|-e|-L|-P)$ ]]; then
+      dir=$(echo -n "${last_param}" | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/');
+      options="${@:1:$#-1}";
+    fi
+    if [[ -z "${dir}" ]]; then
+      builtin cd ${options};
+      return $?;
     else
-      builtin cd ${params}
+      builtin cd ${options} "${dir}";
+      return $?;
     fi
   }
   # Prevent that this function be overriden
-  readonly -f cd
+  readonly -f cd;
 fi
