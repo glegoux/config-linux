@@ -115,15 +115,6 @@ alias ls='ls --color=auto'
 alias sh="PS1='sh> ' sh"
 alias zsh="PS1='zsh> ' zsh"
 
-## WINDOWS SUBSYSTEM FOR LINUX ##
-
-if grep -q Microsoft /proc/version; then
-  export DISPLAY=:0
-  alias docker=docker.exe
-  alias powershell=powershell.exe
-  export LS_COLORS='ow=01;36;40'
-fi
-
 ## PROMPT ##
 
 # color (compatible dash)
