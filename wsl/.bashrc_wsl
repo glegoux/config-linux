@@ -3,8 +3,19 @@
 # Bash extension for Windows Subsystem for Linux
 
 if grep -q Microsoft /proc/version; then
+  # Configure server X for Linux GUI launched from WSL
   export DISPLAY=:0
+  
+  # All Windows command with .exe can be execute directly, just some alias for
+  # current windows command
   alias docker=docker.exe
   alias powershell=powershell.exe
+  alias cmd=cmd.exe
+  alias explorer=explorer.exe
+  alias notepad=notepad.exe
+  
+  # Have nice colors for ls
   export LS_COLORS='ow=01;36;40'
+  
+  
 fi
