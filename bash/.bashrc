@@ -81,34 +81,24 @@ export EDITOR=vim
 
 # enable bash functions
 if [ -f ~/.bash_functions ]; then
-    . ~/.bash_functions
+  . ~/.bash_functions
 fi
 
 # enable bash clean
 if [ -f ~/.bash_clean ]; then
-    . ~/.bash_clean
+  . ~/.bash_clean
 fi
 
 # enable bash alias
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # Specific:
 
-# enable browsing history
-if [ -f ~/.bashrc_bhist ]; then
-      . ~/.bashrc_bhist
-fi
-
-# enable browsing history aliases
-if [ -f ~/.bash_aliases_bhist ]; then
-      . ~/.bash_aliases_bhist
-fi
-
-# enable git config
-if [ -f ~/.bashrc_git ]; then
-    . ~/.bashrc_git
+# enable specific extensions
+if [ -f ~/.bashrc_extensions ]; then
+  . ~/.bashrc_extensions
 fi
 
 ## ALIASES ##
@@ -164,11 +154,11 @@ pre_prompt() {
     local u="$(whoami)"
     local h="$(hostname -f)"
     local wd="${PWD}"
-    if [[ "${wd}" =~ ^${HOME}. ]]; then
+    if [ "${wd}" =~ ^${HOME}. ]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    if [[ ${#wd} -gt 20 ]]; then
+    if [ ${#wd} -gt 20 ]; then
       wd="${wd:17}"
       wd="...${wd}"
     fi
@@ -182,10 +172,10 @@ pre_prompt() {
     fi
 
     local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t} \\$]${NC}"
-    if [[ -n ${python_env} ]]; then
+    if [ -n ${python_env} ]; then
         prompt="${GREEN}${python_env}${NC}${prompt}"
     fi
-    if [[ ${exit_status} -ne 0 ]]; then
+    if [ ${exit_status} -ne 0 ]; then
         prompt="${RED}${exit_status}${NC}${base_color}|${NC}${prompt}"
     fi
     prompt="${base_color}[${NC}${prompt}\n"
