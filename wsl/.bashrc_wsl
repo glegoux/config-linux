@@ -17,5 +17,27 @@ if grep -q Microsoft /proc/version; then
   # Have nice colors for ls
   export LS_COLORS='ow=01;36;40'
   
-  
+  # Allow to browse the Windows folders more easily, C:\ is mounted at /mnt/c in Linux side,
+  # and you can mount Linux file system in Windows side at W:\ also.
+  ##
+  # Description:
+  #   Override builtin cd command to be compatible with Windows Path.
+  #   It is executed each time that cd is used, you can bypass this override
+  #   with 'builtin cd', and see this override implementaion with 'type cd'.
+  #   For example 'cd 'C:\Users'' or 'cd C:\\Users' allows to go to '/mnt/c/Users'
+  #   folder, it is important to espace Windows path with simple quote or to prepend
+  #   each slash with another slash, because slash is a meta-character to escape the
+  #   next character in Bash. Usual cd command continue working with:
+  #   cd ~; cd -; cd ..; cd $HOME; cd; cd [linux_path]; cd -L [dir]; ...
+  # Global:
+  #  Same that builtin cd command
+  # Parameter:
+  #  Same that builtin cd command
+  # Exit Status:
+  #  Same that builtin cd command
+  #
+  cd () {
+    local wsl_folder=$(echo $@ | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/')
+    builtin cd "${wsl_folder}"
+  }
 fi
