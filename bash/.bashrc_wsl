@@ -1,6 +1,6 @@
 # ~/.bashrc_wsl
 #
-# Extension for Windows Subsystem for Linux
+# Bash extension for Windows Subsystem for Linux
 
 if grep -q Microsoft /proc/version; then
   export DISPLAY=:0
