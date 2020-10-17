@@ -160,64 +160,35 @@ shopt -s checkwinsize
 export LINES COLUMNS
 
 pre_prompt() {
-    # get exit status all right
     local -i exit_status="$?"
-    # line 1 without color
-    local color=${YELLOW}
     local u="$(whoami)"
-    local h="$(hostname)"
-    # for git prompt
-    local g="$(__git_ps1)"
+    local h="$(hostname -f)"
     local wd="${PWD}"
     if [[ "${wd}" =~ ^${HOME}. ]]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    local l1="${u}: ${wd}${g}"
-    local pyenv=$(basename "${VIRTUAL_ENV}")
-    if [ -z "${pyenv}" ]; then
-      pyenv=$(basename "${CONDA_DEFAULT_ENV}")
+    if [[ ${#wd} -gt 20 ]]; then
+      wd="${wd:17}"
+      wd="...${wd}"
     fi
-    if [ -n "${pyenv}" ]; then
-      pyenv="(${pyenv}) "
-      l1="${pyenv}${l1}"
+    local t="$(date --utc "+%H:%M:%S %Z")"
+    # extra
+    local base_color=${YELLOW}
+    local git="$(__git_ps1)"
+    local python_env=$(basename "${VIRTUAL_ENV}")
+    if [ -z "${pyenv}" ]; then
+      python_env=$(basename "${CONDA_DEFAULT_ENV}")
+    fi
+
+    local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t} \\$]${NC}"
+    if [[ -n ${python_env} ]]; then
+        prompt="${GREEN}${python_env}${NC}${prompt}"
     fi
     if [[ ${exit_status} -ne 0 ]]; then
-        l1="${exit_status}|${l1}"
+        prompt="${RED}${exit_status}${NC}${base_color}|${NC}${prompt}"
     fi
-    l1="[${l1}]"
-    # responsive prompt if line 1 too long
-    local l1_size=${#l1}
-    local d=""
-    local delta=""
-    if [[ ${COLUMNS} -gt ${l1_size} ]]; then
-        delta="$((${COLUMNS}-${l1_size}))"
-        if [[ ${TERM} != "ansi" ]]; then
-            # if terminal is not for eclipse
-            d=$(for i in `seq 1 ${delta}`; do echo -n =; done)
-        fi
-    else
-        delta="$((${l1_size}-${COLUMNS}+3))"
-        if [[ ${delta} -lt ${#wd} ]]; then
-            wd="${wd:${delta}}"
-            wd="...${wd}"
-        else
-            # impossible to resize prompt
-            export PS1="${color}$u \\$ ${NC}"
-            return
-        fi
-    fi
-    # line 1 with color
-    pyenv="${GREEN}${pyenv}${NC}${YELLOW}"
-    if [[ ${exit_status} -eq 0 ]]; then
-        l1="${color}[${pyenv}${u}: ${wd}${g}]${d}"
-    else
-        l1="${color}[${RED}${exit_status}${color}|${pyenv}${u}: ${wd}${g}]${d}"
-    fi
-    # line 2 with color
-    local t="$(date "+%H:%M:%S")"
-    local l2="${color}[$t]-\\$ ${NC}"
-    export PS1="${l1}\n${l2}"
-
+    prompt="${base_color}[${NC}${prompt}\n"
+    export PS1="${prompt}"
 }
 PROMPT_COMMAND=pre_prompt
