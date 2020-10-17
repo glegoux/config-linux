@@ -34,7 +34,7 @@ if grep -q Microsoft /proc/version; then
   #   each slash with another slash, because slash is a meta-character to escape the
   #   next character in Bash. Furthermore just note that Windows paths are not case
   #   sensitive.
-  #   Usual cd command continue working with:
+  #   Usual cd commands continue working with:
   #   cd ~; cd -; cd ..; cd $HOME; cd; cd [linux_path]; cd -L [dir]; ...
   # Global:
   #  Same that builtin cd command
