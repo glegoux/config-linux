@@ -2,18 +2,16 @@
 #
 # Load the chosen bash extensions
 
+# See https://github.com/glegoux/config-linux/blob/master/git/.bashrc_git
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
 fi
 
-if [ -f ~/.bash_aliases_bhist ]; then
-      . ~/.bash_aliases_bhist
-fi
-
+# See https://github.com/glegoux/config-linux/blob/master/git/.bashrc_git
 if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
 fi
 
-if [ -f ~/.bashrc_git ]; then
+if [ -f ~/.bashrc_wsl ]; then
     . ~/.bashrc_wsl
 fi
