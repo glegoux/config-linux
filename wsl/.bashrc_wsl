@@ -44,17 +44,25 @@ if grep -q Microsoft /proc/version; then
   cd () {
     local last_param="${@: -1}";
     local dir="";
+    local options="$@";
     if [[ $# -gt 0 ]] && [[ ! "${last_param}" =~ ^(-@|-e|-L|-P)$ ]]; then
       dir=$(echo -n "${last_param}" | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/');
       options="${@:1:$#-1}";
     fi
     if [[ -z "${dir}" ]]; then
-      builtin cd ${options};
-      return $?;
+      if [[ -z "${options}" ]]; then
+        builtin cd;
+      else
+        builtin cd ${options};
+      fi
     else
-      builtin cd ${options} "${dir}";
-      return $?;
+      if [[ -z "${options}" ]]; then
+        builtin cd "${dir}";
+      else
+        builtin cd ${options} "${dir}";
+      fi
     fi
+    return $?;
   }
   # Prevent that this function be overriden
   readonly -f cd;
