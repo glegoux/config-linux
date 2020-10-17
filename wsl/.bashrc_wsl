@@ -28,7 +28,11 @@ if grep -q Microsoft /proc/version; then
   #   next character in Bash. Furthermore just note that Windows paths are not case
   #   sensitive.
   #   Usual cd commands continue working with:
-  #   cd ~; cd -; cd ..; cd $HOME; cd; cd [linux_path]; cd -L [path]; ...
+  #   cd ~; cd -; cd ..; cd; cd [options] [path]; 
+  #   cd [relative_linux_path]; cd [relative_linux_path]; 
+  #   ...
+  #   /!\ If you use a cd option then a path with white characters, it doesn't work
+  #   For example: 'cd 'C:\Users\Program Files'' works, but 'cd -L 'C:\Users\Program Files'' not.
   # Global:
   #  Same that builtin cd command
   # Parameter:
@@ -37,8 +41,12 @@ if grep -q Microsoft /proc/version; then
   #  Same that builtin cd command
   #
   cd () {
-    local wsl_folder=$(echo $@ | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/')
-    builtin cd "${wsl_folder}"
+    local params=$(echo $@ | sed 's/\\/\//g' | sed 's/^C:/\/mnt\/c/')
+    if [[ -z "${params}" ]]; then
+      builtin cd
+    else
+      builtin cd ${params}
+    fi
   }
   # Prevent that this function be overriden
   readonly -f cd
