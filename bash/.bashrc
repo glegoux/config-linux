@@ -11,7 +11,7 @@
 # or with help
 
 # if not running interactively, don't do anything
-[ -z "$PS1" ] && return
+[[ -z "$PS1" ]] && return
 
 ## KEYBOARD ##
 
@@ -74,31 +74,31 @@ export HISTTIMEFORMAT="%Y-%m-%d %H:%M:%S "
 export EDITOR=vim
 
 # make less more friendly for non-text input files, see lesspipe(2)
-[ -x /usr/bin/lesspipe ] && eval "$(lesspipe)"
+[[ -x /usr/bin/lesspipe ]] && eval "$(lesspipe)"
 
 ## BASH EXTENSIONS ##
 
 # Native:
 
 # enable bash functions
-if [ -f ~/.bash_functions ]; then
+if [[ -f ~/.bash_functions ]]; then
   . ~/.bash_functions
 fi
 
 # enable bash clean
-if [ -f ~/.bash_clean ]; then
+if [[ -f ~/.bash_clean ]]; then
   . ~/.bash_clean
 fi
 
 # enable bash alias
-if [ -f ~/.bash_aliases ]; then
+if [[ -f ~/.bash_aliases ]]; then
   . ~/.bash_aliases
 fi
 
 # Specific:
 
 # enable specific extensions
-if [ -f ~/.bashrc_extensions ]; then
+if [[ -f ~/.bashrc_extensions ]]; then
   . ~/.bashrc_extensions
 fi
 
@@ -155,7 +155,7 @@ pre_prompt() {
     local u="$(whoami)"
     local h="$(hostname -f)"
     local wd="${PWD}"
-    if [ "${wd}" =~ ^${HOME}. ]; then
+    if [[ "${wd}" =~ ^${HOME}. ]]; then
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
@@ -168,15 +168,15 @@ pre_prompt() {
     local base_color=${YELLOW}
     local git="$(__git_ps1)"
     local python_env=$(basename "${VIRTUAL_ENV}")
-    if [ -z "${pyenv}" ]; then
+    if [[ -z "${pyenv}" ]]; then
       python_env=$(basename "${CONDA_DEFAULT_ENV}")
     fi
 
     local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t} \\$]${NC}"
-    if [ -n ${python_env} ]; then
+    if [[ -n ${python_env} ]]; then
         prompt="${GREEN}${python_env}${NC}${prompt}"
     fi
-    if [ ${exit_status} -ne 0 ]; then
+    if [[ ${exit_status} -ne 0 ]]; then
         prompt="${RED}${exit_status}${NC}${base_color}|${NC}${prompt}"
     fi
     prompt="${base_color}[${NC}${prompt}\n"
