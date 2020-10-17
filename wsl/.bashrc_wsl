@@ -35,7 +35,7 @@ if grep -q Microsoft /proc/version; then
   #   next character in Bash. Furthermore just note that Windows paths are not case
   #   sensitive.
   #   Usual cd commands continue working with:
-  #   cd ~; cd -; cd ..; cd $HOME; cd; cd [linux_path]; cd -L [dir]; ...
+  #   cd ~; cd -; cd ..; cd $HOME; cd; cd [linux_path]; cd -L [path]; ...
   # Global:
   #  Same that builtin cd command
   # Parameter:
