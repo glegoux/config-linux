@@ -8,6 +8,7 @@
 # See documentation at https://www.gnu.org/software/bash/manual/bash.html
 # or with 'man bash' for bash(1) manual
 # or with bash --help
+# or with help
 
 # if not running interactively, don't do anything
 [ -z "$PS1" ] && return
