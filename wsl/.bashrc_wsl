@@ -64,6 +64,6 @@ if grep -q Microsoft /proc/version; then
     fi
     return $?;
   }
-  # Prevent that this function be overriden
+  # Prevent that this function to be overriden
   readonly -f cd;
 fi
