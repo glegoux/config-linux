@@ -2,7 +2,7 @@
 #
 # Load the chosen bash extensions
 
-# See https://github.com/glegoux/config-linux/blob/master/git/.bashrc_git
+# See https://github.com/glegoux/browsing-history-shell/blob/master/.bashrc_bhist
 if [ -f ~/.bashrc_bhist ]; then
       . ~/.bashrc_bhist
 fi
@@ -12,6 +12,7 @@ if [ -f ~/.bashrc_git ]; then
     . ~/.bashrc_git
 fi
 
+# See https://github.com/glegoux/config-linux/blob/master/wsl/.bashrc_wsl
 if [ -f ~/.bashrc_wsl ]; then
     . ~/.bashrc_wsl
 fi
