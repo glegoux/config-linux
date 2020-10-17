@@ -6,8 +6,8 @@ if grep -q Microsoft /proc/version; then
   # Configure server X for Linux GUI launched from WSL
   export DISPLAY=:0
   
-  # All Windows command with .exe can be execute directly, just some alias for
-  # current windows command
+  # All Windows command with .exe can be executed directly, 
+  # just some aliases for common windows commands
   alias docker=docker.exe
   alias powershell=powershell.exe
   alias cmd=cmd.exe
