@@ -163,7 +163,7 @@ pre_prompt() {
       python_env=$(basename "${CONDA_DEFAULT_ENV}")
     fi
 
-    local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t} \\$]${NC}"
+    local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t}] \\$ ${NC}"
     if [[ -n ${python_env} ]]; then
         prompt="${GREEN}${python_env}${NC}${prompt}"
     fi
