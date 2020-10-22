@@ -141,6 +141,14 @@ white="$(tput setaf 7)"
 WHITE="$(tput bold)${white}"
 NC="$(tput sgr0)"
 
+if [[ -z "${PROMPT_BASE_COLOR}" ]]; then
+  PROMPT_BASE_COLOR=${YELLOW}
+if
+
+if [[ -z "${PROMPT_EXIT_STATUS_COLOR}" ]]; then
+  PROMPT_EXIT_STATUS_COLOR=${RED}
+if
+
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -161,7 +169,8 @@ pre_prompt() {
     fi
     local t="$(date --utc "+%H:%M:%S %Z")"
     # extra
-    local base_color=${YELLOW}
+    local base_color=${PROMPT_BASE_COLOR}
+    local exit_status_color=${PROMPT_EXIT_STATUS_COLOR}
     local git="$(__git_ps1)"
     local python_env=$(basename "${VIRTUAL_ENV}")
     if [[ -z "${pyenv}" ]]; then
@@ -173,7 +182,7 @@ pre_prompt() {
         prompt="${GREEN}${python_env}${NC}${prompt}"
     fi
     if [[ ${exit_status} -ne 0 ]]; then
-        prompt="${RED}${exit_status}${NC}${base_color}|${NC}${prompt}"
+        prompt="${exit_status_color}${exit_status}${NC}${base_color}|${NC}${prompt}"
     fi
     prompt="${base_color}[${NC}${prompt}\n"
     export PS1="${prompt}"
