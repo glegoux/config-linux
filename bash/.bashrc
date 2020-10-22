@@ -143,11 +143,11 @@ NC="$(tput sgr0)"
 
 if [[ -z "${PROMPT_BASE_COLOR}" ]]; then
   PROMPT_BASE_COLOR=${YELLOW}
-if
+fi
 
 if [[ -z "${PROMPT_EXIT_STATUS_COLOR}" ]]; then
   PROMPT_EXIT_STATUS_COLOR=${RED}
-if
+fi
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
