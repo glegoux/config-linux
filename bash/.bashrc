@@ -150,8 +150,8 @@ pre_prompt() {
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    if [ ${#wd} -gt 20 ]; then
-      wd="${wd:17}"
+    if [ ${#wd} -gte 75 ]; then
+      wd="${wd:72}"
       wd="...${wd}"
     fi
     local t="$(date --utc "+%H:%M:%S %Z")"
