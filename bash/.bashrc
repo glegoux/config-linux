@@ -80,6 +80,11 @@ export EDITOR=vim
 
 # Native:
 
+# enable bash system configuration
+if [[ -f /etc/bashrc ]]; then
+  . /etc/bashrc
+fi
+
 # enable bash functions
 if [[ -f ~/.bash_functions ]]; then
   . ~/.bash_functions
