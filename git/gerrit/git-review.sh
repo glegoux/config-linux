@@ -49,99 +49,93 @@ get_n_patch_sets() {
 
 # script
 
-if [[ "${FUNCNAME[0]}" == "main" ]]; then
+# go to repository home
+cd "$(git rev-parse --show-toplevel)"
 
-  # go to repository home
-  cd "$(git rev-parse --show-toplevel)"
+current_branch="$(git rev-parse --abbrev-ref HEAD)"
+message_commit="$(git log --format=%B -n 1)"
+change_id="$(echo "${message_commit}" | grep -E "^Change-Id:" | cut -f2 -d " ")"
 
-  current_branch="$(git rev-parse --abbrev-ref HEAD)"
-  message_commit="$(git log --format=%B -n 1)"
-  change_id="$(echo "${message_commit}" | grep -E "^Change-Id:" | cut -f2 -d " ")"
+if [[ -z "${change_id}" ]] || [[ $(echo "${change_id}" | wc -l) -ne 1 ]]; then
+  >&2 echo "ERROR: Incorrect Change-Id: '${change_id}'"
+  exit 1
+fi
 
-  if [[ -z "${change_id}" ]] || [[ $(echo "${change_id}" | wc -l) -ne 1 ]]; then
-    >&2 echo "ERROR: Incorrect Change-Id: '${change_id}'"
-    exit 1
-  fi
+# print commit log
+git log --stat --pretty=fuller -n 1
+echo
 
-  # print commit log
-  git log --stat --pretty=fuller -n 1
+result="$(get_info_gerrit "${change_id}")"
+is_new_review="false"
+if [[ "${result}" == "" ]]; then
+  is_new_review="true"
+fi
+
+if [[ "${is_new_review}" == "true" ]]; then
+
+  echo "*** Create a new review"
+  echo
+  echo "commit id    : ${commit_id}"
+  echo "change number: ${change_number}"
+  echo "change id    : ${change_id}"
+  echo "patch sets   : 1"
   echo
 
-  result="$(get_info_gerrit "${change_id}")"
-  is_new_review="false"
-  if [[ "${result}" == "" ]]; then
-    is_new_review="true"
-  fi
+else
 
-  if [[ "${is_new_review}" == "true" ]]; then
-
-    echo "*** Create a new review"
-    echo
-    echo "commit id    : ${commit_id}"
-    echo "change number: ${change_number}"
-    echo "change id    : ${change_id}"
-    echo "patch sets   : 1"
-    echo
-
-  else
-
-    change_number="$(get_change_number "${result}")"
-    commit_id="$(get_commit_id "${result}")"
-    n_patch_sets="$(get_n_patch_sets "${result}" "${commit_id}")"
-
-    echo "*** Update a review"
-    echo
-    echo "See your current review: ${GERRIT_URL}/${change_number}/"
-    echo "commit id    : ${commit_id}"
-    echo "change number: ${change_number}"
-    echo "change id    : ${change_id}"
-    echo "patch sets   : ${n_patch_sets}"
-    echo
-
-  fi
-
-  read -p "Do you want push one review on ${current_branch} branch ? [Y/n]: " \
-    answer
-  if ! [[ "${answer}" =~ ^(|y|Y)$ ]]; then
-    echo "No review has been pushed"
-    exit 0
-  fi
-
-  # Possible reference types:
-  # changes, for=publish, draft (deprecated)
-  #
-  # Push with bypassing Code Review:
-  # git push origin HEAD:master
-  # If pushing to Gerrit fails consult the Gerrit documentation that
-  # explains the error messages.
-
-  if [[ "${is_new_review}" == "true" ]]; then
-    ref_type="publish"
-  else
-    ref_type="changes"
-  fi
-
-  if [[ "${ref_type}" == "publish" ]]; then
-    git push origin HEAD:refs/"${ref_type}"/"${1:-${current_branch}}"
-  elif [[ "${ref_type}" == "changes" ]]; then
-    git push origin HEAD:refs/"${ref_type}"/"${1:-${change_number}}"
-  else
-    >&2 echo "ERROR: Unknown reference type: '${ref_type}'"
-    exit 1
-  fi
-  if [[ $? -ne 0 ]]; then
-    exit 1
-  fi
-
-
-  result="$(get_info_gerrit "${change_id}")"
-  if [[ "${result}" == "" ]]; then
-    >&2 echo "ERROR: Impossible to retrieve pushed review!"
-    exit 1
-  fi
   change_number="$(get_change_number "${result}")"
+  commit_id="$(get_commit_id "${result}")"
+  n_patch_sets="$(get_n_patch_sets "${result}" "${commit_id}")"
+
+  echo "*** Update a review"
   echo
-  echo "See your pushed review: ${GERRIT_URL}/${change_number}/"
+  echo "See your current review: ${GERRIT_URL}/${change_number}/"
+  echo "commit id    : ${commit_id}"
+  echo "change number: ${change_number}"
+  echo "change id    : ${change_id}"
+  echo "patch sets   : ${n_patch_sets}"
+  echo
 
 fi
 
+read -p "Do you want push one review on ${current_branch} branch ? [Y/n]: " \
+  answer
+if ! [[ "${answer}" =~ ^(|y|Y)$ ]]; then
+  echo "No review has been pushed"
+  exit 0
+fi
+
+# Possible reference types:
+# changes, for=publish, draft (deprecated)
+#
+# Push with bypassing Code Review:
+# git push origin HEAD:master
+# If pushing to Gerrit fails consult the Gerrit documentation that
+# explains the error messages.
+
+if [[ "${is_new_review}" == "true" ]]; then
+  ref_type="publish"
+else
+  ref_type="changes"
+fi
+
+if [[ "${ref_type}" == "publish" ]]; then
+  git push origin HEAD:refs/"${ref_type}"/"${1:-${current_branch}}"
+elif [[ "${ref_type}" == "changes" ]]; then
+  git push origin HEAD:refs/"${ref_type}"/"${1:-${change_number}}"
+else
+  >&2 echo "ERROR: Unknown reference type: '${ref_type}'"
+  exit 1
+fi
+if [[ $? -ne 0 ]]; then
+  exit 1
+fi
+
+result="$(get_info_gerrit "${change_id}")"
+if [[ "${result}" == "" ]]; then
+  >&2 echo "ERROR: Impossible to retrieve pushed review!"
+  exit 1
+fi
+change_number="$(get_change_number "${result}")"
+echo
+echo "See your pushed review: ${GERRIT_URL}/${change_number}/"
