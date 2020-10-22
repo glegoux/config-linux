@@ -173,13 +173,13 @@ pre_prompt() {
     local exit_status_color=${PROMPT_EXIT_STATUS_COLOR}
     local git="$(__git_ps1)"
     local python_env=$(basename "${VIRTUAL_ENV}")
-    if [[ -z "${pyenv}" ]]; then
+    if [[ -z "${python_env}" ]]; then
       python_env=$(basename "${CONDA_DEFAULT_ENV}")
     fi
 
     local prompt="${base_color}${u}@${h}:${wd}${NC}${BLUE}${git}${NC}${base_color} - ${t}] \\$ ${NC}"
     if [[ -n ${python_env} ]]; then
-        prompt="${GREEN}${python_env}${NC}${prompt}"
+        prompt="${GREEN}(${python_env}) ${NC}${prompt}"
     fi
     if [[ ${exit_status} -ne 0 ]]; then
         prompt="${exit_status_color}${exit_status}${NC}${base_color}|${NC}${prompt}"
