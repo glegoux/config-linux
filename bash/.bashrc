@@ -150,7 +150,7 @@ pre_prompt() {
         local home_sed=$(echo -n ${HOME} | sed 's/\//\\\//g')
         wd=$(echo -n "${wd}" | sed "s/^${home_sed}/~/")
     fi
-    if [ ${#wd} -gte 75 ]; then
+    if [ ${#wd} -ge 75 ]; then
       wd="${wd:72}"
       wd="...${wd}"
     fi
